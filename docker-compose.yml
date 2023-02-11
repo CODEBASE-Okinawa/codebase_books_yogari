@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    env_file: .env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/workspace:cached
+      - bundle-volume:/workspace/vendor/bundle
+      - node-module-volume:/workspace/node_modules
+    depends_on:
+      - mysql
+    command: bash -c 'rm -f ./tmp/pids/server.pid && bin/rails s -b 0.0.0.0'
+  mysql:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - TZ="Asia/Tokyo"
+volumes:
+  mysql-volume:
+  bundle-volume:
+  node-module-volume:

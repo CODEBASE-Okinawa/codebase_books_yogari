@@ -1,10 +1,11 @@
-Book.create!(title: "Sample Book")
+ActiveRecord::Base.transaction do
+  # 追加のユーザーをまとめて生成する
+  10.times do |_n|
+    Book.create!(title: Faker::Book.title)
+  end
 
-# 追加のユーザーをまとめて生成する
-20.times do |_n|
-  title = Faker::Book.title
-
-  Book.create!(title:)
+  if Rails.env.development?
+    AdminUser.create!(email: "admin@example.com", password: "password",
+                      password_confirmation: "password")
+  end
 end
-
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

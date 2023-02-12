@@ -1,0 +1,11 @@
+<h1>本一覧</h1>
+
+<ul class="books">
+  <% @books.each do |book| %>
+    <li>
+      <%= image_tag 'sample.jpeg', size: 200 %>
+      <%= link_to book.title, book %>
+      <p>ステータスが表示されます</p>
+    </li>
+  <% end %>
+</ul>

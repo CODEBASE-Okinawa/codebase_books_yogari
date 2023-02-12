@@ -125,6 +125,8 @@ GEM
     diff-lcs (1.5.0)
     e2mmap (0.1.0)
     erubi (1.12.0)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -355,6 +357,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  faker (= 2.21.0)
   importmap-rails
   jbuilder
   pg

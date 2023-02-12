@@ -54,6 +54,8 @@ group :development, :test do
   gem "debase"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "ruby-debug-ide"
+
+  gem "faker",   "2.21.0"
 end
 
 group :development do

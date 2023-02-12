@@ -11,6 +11,10 @@ gem "sprockets-rails"
 
 gem "devise"
 
+gem "devise-i18n"
+
+gem "activeadmin"
+
 gem "mysql2"
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -44,8 +48,9 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
+gem "carrierwave"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

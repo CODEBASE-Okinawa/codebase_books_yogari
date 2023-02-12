@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+     ()
     actioncable (7.0.4.2)
       actionpack (= 7.0.4.2)
       activesupport (= 7.0.4.2)
@@ -125,15 +126,12 @@ GEM
     diff-lcs (1.5.0)
     e2mmap (0.1.0)
     erubi (1.12.0)
-    
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
-
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
-
     globalid (1.1.0)
       activesupport (>= 5.0)
     has_scope (0.8.1)
@@ -359,11 +357,8 @@ DEPENDENCIES
   debase
   debug
   devise
-<<<<<<< HEAD
-  faker (= 2.21.0)
-=======
   devise-i18n
->>>>>>> main
+  faker (= 2.21.0)
   importmap-rails
   jbuilder
   mysql2

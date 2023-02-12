@@ -120,6 +120,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.10.2)
+      devise (>= 4.8.0)
     diff-lcs (1.5.0)
     e2mmap (0.1.0)
     erubi (1.12.0)
@@ -352,6 +354,7 @@ DEPENDENCIES
   debase
   debug
   devise
+  devise-i18n
   importmap-rails
   jbuilder
   mysql2

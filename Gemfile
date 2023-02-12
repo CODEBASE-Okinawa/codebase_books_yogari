@@ -11,6 +11,8 @@ gem "sprockets-rails"
 
 gem "devise"
 
+gem "devise-i18n"
+
 gem "activeadmin"
 
 gem "mysql2"

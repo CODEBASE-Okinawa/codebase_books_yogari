@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <%# userがログイン時のステータス %>
+    <% if user_signed_in? %>
+      <h2>
+        <%= "#{current_user.name}さん" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+      </h2>
+    <% end %>
     <%= yield %>
   </body>
 </html>

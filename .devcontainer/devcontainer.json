@@ -25,5 +25,5 @@
     }
   },
   "initializeCommand": "if ! [ -f .env ];then cp .env.sample .env;fi",
-  "postStartCommand": "bundle install && bin/setup && bundle exec solargraph bundle"
+  "postStartCommand": "bundle install && bundle exec solargraph bundle"
 }

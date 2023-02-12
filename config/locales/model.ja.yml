@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      book: 本
+    attributes:
+      user:
+        id: ID
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      book:
+        id: ID
+        title: タイトル
+        cover_image: 表紙

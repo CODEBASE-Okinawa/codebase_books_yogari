@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
   mount_uploader :cover_image, CoverImageUploader
 end

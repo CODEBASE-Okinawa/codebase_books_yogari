@@ -11,10 +11,6 @@ gem "sprockets-rails"
 
 gem "devise"
 
-gem "devise-i18n"
-
-gem "activeadmin"
-
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -50,7 +46,6 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem "carrierwave"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -60,7 +55,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "ruby-debug-ide"
 
-  gem "faker",   "2.21.0"
+  gem "faker", "2.21.0"
 end
 
 group :development do

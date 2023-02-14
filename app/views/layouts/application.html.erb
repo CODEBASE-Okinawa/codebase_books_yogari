@@ -11,10 +11,19 @@
   </head>
 
   <body>
+    <%# userがログイン時、ステータスを表示 %>
+    <% if user_signed_in? %>
+      <h2>
+        <%= "#{current_user.name}さん" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+      </h2>
+    <% end %>
+
     <%# ユーザー登録、ログイン、ログアウト時のフラッシュメッセージ %>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -3,7 +3,7 @@ ActiveRecord::Base.transaction do
   10.times do
     Book.create!(title: Faker::Book.title)
   end
-
+  
   User.create!(
     name: "admin",
     email: "admin@example.com",
@@ -19,4 +19,51 @@ ActiveRecord::Base.transaction do
     password_confirmation: "password",
     role: 1
   )
+  if Rails.env.development?
+    AdminUser.create!(email: "admin@example.com", password: "password",
+                      password_confirmation: "password")
+  end
+
+  User.create!(email: "guest1@mail.com",
+               name: "guest1",
+               password: "password")
+  User.create!(email: "guest2@mail.com",
+               name: "guest2",
+               password: "password")
+  User.create!(email: "guest3@mail.com",
+               name: "guest3",
+               password: "password")
+  User.create!(email: "guest4@mail.com",
+               name: "guest4",
+               password: "password")
+  # reservations のサンプルデータ
+  Reservation.create!(user_id: 1,
+                      book_id: 1,
+                      reservation_at: Time.now + 3.days,
+                      return_at: Time.now + 4.days)
+  Reservation.create!(user_id: 2,
+                      book_id: 1,
+                      reservation_at: Time.now + 5.days,
+                      return_at: Time.now + 7.days)
+  Reservation.create!(user_id: 3,
+                      book_id: 1,
+                      reservation_at: Time.now + 8.days,
+                      return_at: Time.now + 10.days)
+  Reservation.create!(user_id: 4,
+                      book_id: 1,
+                      reservation_at: Time.now - 6.days,
+                      return_at: Time.now - 3.days)
+  Reservation.create!(user_id: 1,
+                      book_id: 1,
+                      reservation_at: Time.now - 2.days,
+                      return_at: Time.now + 2.days)
+  Reservation.create!(user_id: 1,
+                      book_id: 3,
+                      reservation_at: Time.now + 3.days,
+                      return_at: Time.now + 6.days)
+  Reservation.create!(user_id: 2,
+                      book_id: 3,
+                      reservation_at: Time.now + 7.days,
+                      return_at: Time.now + 10.days)
+
 end

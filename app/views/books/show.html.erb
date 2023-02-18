@@ -14,7 +14,7 @@
   <%= f.submit '予約する', class: 'btn btn-primary' %>
 <% end %>
 
-<% unless @reservations.empty?%>
+<% if @reservations%>
   <div class="resevation_list">
     <p>以下の日程で予約が入っています。</p>
     <p>日程が被らないように貸出・予約しましょう</p>

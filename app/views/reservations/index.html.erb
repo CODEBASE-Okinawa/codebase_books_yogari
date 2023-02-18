@@ -1,7 +1,7 @@
 <h1>Reservations#index</h1>
 
-<% if @user %>
-  <h1> <%= @user.name %> さん</h1>
+<% if current_user %>
+  <h1> <%= current_user.name %> さん</h1>
   <%= link_to "サインアウト", "#"%>
 <% else %>
   <h1> 名無しさん</h1>

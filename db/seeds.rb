@@ -3,7 +3,6 @@ ActiveRecord::Base.transaction do
   10.times do
     Book.create!(title: Faker::Book.title)
   end
-  
   User.create!(
     name: "admin",
     email: "admin@example.com",
@@ -11,7 +10,6 @@ ActiveRecord::Base.transaction do
     password_confirmation: "password",
     role: 0
   )
-
   User.create!(
     name: "テストユーザー",
     email: "test@example.com",
@@ -19,11 +17,6 @@ ActiveRecord::Base.transaction do
     password_confirmation: "password",
     role: 1
   )
-  if Rails.env.development?
-    AdminUser.create!(email: "admin@example.com", password: "password",
-                      password_confirmation: "password")
-  end
-
   User.create!(email: "guest1@mail.com",
                name: "guest1",
                password: "password")
@@ -65,5 +58,4 @@ ActiveRecord::Base.transaction do
                       book_id: 3,
                       reservation_at: Time.now + 7.days,
                       return_at: Time.now + 10.days)
-
 end

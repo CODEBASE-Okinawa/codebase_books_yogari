@@ -1,7 +1,8 @@
 class LendingsController < ApplicationController
   before_action :require_signed_in, only: [:index, :show]
+  
   def index
-    @lendings = current_user.lending_books.return_false
+    @lendings = current_user.lendings.not_yet_returned
   end
 
   def show

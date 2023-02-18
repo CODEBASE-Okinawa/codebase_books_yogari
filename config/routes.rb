@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books, only: [:index]
   end
+  get 'lendings/index', to: 'lendings#index'
+  get 'lendings/show', to: 'lendings#show'
 end

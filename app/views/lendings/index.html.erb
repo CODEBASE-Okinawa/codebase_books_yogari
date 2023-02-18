@@ -1,0 +1,18 @@
+<h1>借りている本</h1>
+<% if @lendings.any? %>
+    <% @lendings.each do |lend| %>
+        <div>
+            <%= image_tag 'sample.jpeg', size: 200 %>
+        </div>
+        <div>
+            <%= lend.book.title %>
+        </div>
+        <div>
+            <%= lend.return_at.strftime("%Y年%m月%d日") %>まで
+        </div>
+        <%= lend.user.name %>
+        <%= lend.return_status %>
+    <% end %>
+<% else %>
+    <p>現在借りている本はありません</p>
+<% end %>

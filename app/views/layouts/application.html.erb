@@ -49,7 +49,7 @@
         <% if user_signed_in? %>
           <%= link_to 'ログアウト', destroy_user_session_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600", data: { turbo_method: :delete } %>
         <% else %>
-          <%= link_to 'ログイン', new_user_session_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600", data: { turbo_method: :delete } %>
+          <%= link_to 'ログイン', new_user_session_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600" %>
         <% end %>
       </ul>
     </div>

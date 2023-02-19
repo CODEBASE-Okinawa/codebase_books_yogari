@@ -61,7 +61,7 @@ ActiveRecord::Base.transaction do
                       reservation_at: Time.now + 7.days,
                       return_at: Time.now + 10.days)
 
-
+  # テストユーザーが借りている本
   books = Book.all
   user = User.find_by(email: "test@example.com")
   books.each_with_index do |book, i|

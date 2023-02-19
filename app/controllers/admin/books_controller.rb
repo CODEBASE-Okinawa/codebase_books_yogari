@@ -8,7 +8,7 @@ class Admin::BooksController < ApplicationController
   private
 
   def check_admin
-    unless current_user.admin?
+    unless current_user&.admin?
       redirect_to books_path
     end
   end

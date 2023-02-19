@@ -1,15 +1,15 @@
-<p>借りている本 >> <%= @lending.book.title %></p>
+<p>借りている本 > <%= @lending.book.title %></p>
 <%= image_tag 'sample.jpeg', size: 500 %>
 <ul>
   <li>
     <%= @lending.book.title %>
   </li>
   <li>
-    現在借りています
+    現在借りています(ステータスが表示されます)
   </li>
   <li>
     <%# リンクを押すと、本を返却して、本の詳細画面へリダイレクトする %>
-    <%= link_to "本を返却する", "#" %>
+    <%= button_to("返却する", lending_path, method: :patch) %>
   </li>
   <li>
     <% if @lending.return_at < Date.today %>

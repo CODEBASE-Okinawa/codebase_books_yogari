@@ -11,6 +11,8 @@ gem "sprockets-rails"
 
 gem "devise"
 
+gem 'devise-i18n'
+
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]

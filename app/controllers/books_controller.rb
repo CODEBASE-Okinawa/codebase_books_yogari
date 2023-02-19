@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   private
 
   def redirect_to_admin_books
-    return unless current_user.admin?
+    return unless current_user&.admin?
 
     redirect_to admin_books_path
   end

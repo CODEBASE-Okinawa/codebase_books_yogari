@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :books
   resources :reservations
-  resources :lendings, only: [:index, :show, :create]
+  resources :lendings, only: [:index, :show, :update, :update]
 end

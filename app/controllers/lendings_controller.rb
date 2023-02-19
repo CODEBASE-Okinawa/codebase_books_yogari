@@ -1,5 +1,5 @@
 class LendingsController < ApplicationController
-  before_action :require_signed_in?, only: [:index, :show]
+  before_action :require_signed_in, only: [:index, :show]
   before_action :redirect_lendings, only: :show
 
   def index
@@ -13,7 +13,7 @@ class LendingsController < ApplicationController
   private
   
   #lendingへのアクセスは、サインインが必要
-  def require_signed_in?
+  def require_signed_in
     redirect_to new_user_session_path if !user_signed_in?
   end
 

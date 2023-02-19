@@ -31,7 +31,7 @@ class LendingsController < ApplicationController
 
   private
 
-  #lendingへのアクセスは、サインインが必要
+  # lendingページへのアクセスは、サインインが必要
   def require_signed_in
     redirect_to new_user_session_path unless user_signed_in?
   end

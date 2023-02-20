@@ -1,10 +1,15 @@
 class ReservationsController < ApplicationController
+  before_action :logged_in_user, only: %i[index show]
   def index
-    @reserved_books = Reservation.where(user_id: current_user.id).where("reservation_at > ?",
+    @reserved_books = Reservation.where(user_id: current_user.id).where("reservation_at >= ?",
                                                                         Time.now).order(reservation_at: :asc)
   end
 
   def show
+    @reserved_book = Reservation.find(params[:id])
+    return unless @reserved_book.nil?
+
+    redirect_to book_path(@@reserved_book.book.id)
   end
 
   def create
@@ -20,5 +25,14 @@ class ReservationsController < ApplicationController
                           user_id: current_user.id,
                           reservation_at: data[:start_at],
                           return_at: data[:return_at] }
+  end
+
+  # ログイン済みユーザーかどうか確認
+  def logged_in_user
+    return unless current_user.nil?
+
+    flash[:danger] = "Please log in."
+    # redirect_to login_url, status: :see_other
+    redirect_to books_url, status: :see_other
   end
 end

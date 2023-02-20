@@ -1,7 +1,11 @@
 <!--TODO: テーブルで表示する-->
 <% @books.each do |book| %>
   <li>
-    <%= image_tag 'sample.jpeg', size: 200 %>
+    <% if book.image.attached? %>
+      <%= image_tag book.image, size: 200 %>
+    <% else %>
+      <%= image_tag 'sample.jpeg', size: 200 %>
+    <% end %>
     <%= link_to book.title, book %>
   </li>
 <% end %>

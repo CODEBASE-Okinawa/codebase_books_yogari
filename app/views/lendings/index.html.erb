@@ -3,10 +3,15 @@
   <% @lendings.each do |lend| %>
     <ul>
       <li>
-        <%= link_to (image_tag 'sample.jpeg', size: 200), lending_path(lend) %>
+        <% if lend.book.image.attached? %>
+          <%= link_to (image_tag lend.book.image, size: 200), lending_path(lend) %>
+        <% else %>
+          <%= link_to (image_tag 'sample.jpeg', size: 200), lending_path(lend) %>
+        <% end %>
       </li>
       <li>
-        <%= link_to lend.book.title, lending_path(lend) %>
+        <%#= link_to lend.book.title, lending_path(lend) %>
+        <%= lend.book.title %>
       </li>
       <li>
         <%= lend.return_at.strftime("%Y年%m月%d日") %>まで

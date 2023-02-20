@@ -5,11 +5,32 @@ class Admin::BooksController < ApplicationController
     @books = Book.all
   end
 
+  def new
+    @book = Book.new
+  end
+
+  def create
+    # debugger
+    @book = Book.new(book_params)
+    @book.image.attach(params[:book][:image])
+    if @book.save
+      flash[:sucess] = "本を登録しました"
+      redirect_to admin_books_path
+    else
+      render 'new', status: :unprocessable_entity
+    end
+    # debugger
+  end
+
   private
 
   def check_admin
     unless current_user&.admin?
       redirect_to books_path
     end
+  end
+
+  def book_params
+    params.require(:book).permit(:title, :image)
   end
 end

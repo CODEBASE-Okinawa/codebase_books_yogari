@@ -1,15 +1,15 @@
 class ReservationsController < ApplicationController
   before_action :logged_in_user, only: %i[index show]
   def index
-    @reserved_books = Reservation.where(user_id: current_user.id).where("reservation_at >= ?",
+    @reservations = Reservation.where(user_id: current_user.id).where("reservation_at >= ?",
                                                                         Time.now).order(reservation_at: :asc)
   end
 
   def show
-    @reserved_book = Reservation.find(params[:id])
-    return unless @reserved_book.nil?
+    @reservation = Reservation.find(params[:id])
+    return unless @reservation.nil?
 
-    redirect_to book_path(@@reserved_book.book.id)
+    redirect_to book_path(@reservation.book.id)
   end
 
   def create

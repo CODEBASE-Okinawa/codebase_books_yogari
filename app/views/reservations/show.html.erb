@@ -4,10 +4,10 @@
 
 
 <%= image_tag 'sample.jpeg', size: 200  %>
-<h2><%= @reserved_book.book.title %></h2>
+<h2><%= @reservation.book.title %></h2>
 <p>ステータスが表示されます</p>
 
 <button>予約を取り消す</button>
 
 <p>以下の日程で予約しています</p>
-<p><%= @reserved_book.reservation_at%> ~ <%= @reserved_book.return_at %></p>
+<p><%= @reservation.reservation_at%> ~ <%= @reservation.return_at %></p>

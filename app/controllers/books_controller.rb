@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :redirect_to_admin_books, only: [:index]
   def index
     @books = Book.all
-  end 
+  end
 
   def show
     @book = Book.find(params[:id])
@@ -10,7 +10,8 @@ class BooksController < ApplicationController
     # 取得した予約にUserが含まれる場合は予約詳細にリダイレクト
     return unless @reservations.exists?(user_id: current_user.id)
 
-    redirect_to reservation_path
+    # userのreservation idを取得し、そこにリダイレクト
+    redirect_to reservation_path(@reservations.find_by(user_id: current_user.id))
   end
 
   private

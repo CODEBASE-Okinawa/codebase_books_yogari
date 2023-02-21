@@ -6,11 +6,12 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @reservations = @book.reservations.where("reservation_at > ?", Time.now).order(reservation_at: :asc)
+    @reservations = @book.reservations.where("reservation_at >= ?", Time.now).order(reservation_at: :asc)
     # 取得した予約にUserが含まれる場合は予約詳細にリダイレクト
     return unless @reservations.exists?(user_id: current_user.id)
 
-    redirect_to reservation_path
+    # userのreservation idを取得し、そこにリダイレクト
+    redirect_to reservation_path(@reservations.find_by(user_id: current_user.id))
   end
 
   private

@@ -13,14 +13,17 @@
 <% end %>
 
 <h1>予約一覧</h1>
-
-<ul class="books">
-  <% @reserved_books.each do |reserved_book| %>
-    <li>
-      <%= image_tag 'sample.jpeg', size: 200 %>
-      <%= link_to reserved_book.book.title, reserved_book %>
-      <p>ステータスが表示されます</p>
-      <p><%= reserved_book.reservation_at.strftime("%Y年%m月%d日")%> から</p>
-    </li>
-  <% end %>
-</ul>
+<% if @reservations.exists? %>
+  <ul class="books">
+    <% @reservations.each do |reservation| %>
+      <li>
+        <%= image_tag 'sample.jpeg', size: 200 %>
+        <%= link_to reservation.book.title, reservation %>
+        <p>ステータスが表示されます</p>
+        <p><%= reservation.reservation_at.strftime("%Y年%m月%d日")%> から</p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>現在予約している本はありません</h2>
+<% end %>

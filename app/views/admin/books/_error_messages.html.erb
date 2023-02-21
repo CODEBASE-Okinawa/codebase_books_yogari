@@ -1,0 +1,10 @@
+<% if @book.errors.any? %>
+  <div>
+    登録に失敗しました
+  </div>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

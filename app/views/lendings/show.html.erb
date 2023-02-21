@@ -1,6 +1,11 @@
 <p>借りている本 > <%= @lending.book.title %></p>
-<%= image_tag 'sample.jpeg', size: 500 %>
 <ul>
+  <li>
+    <% if @lending.book.image.attached? %>
+      <%= image_tag @lending.book.image, size: 500 %>
+    <% else %>
+      <%= image_tag 'no_image.jpeg', size: 500 %>
+    <% end %>
   <li>
     <%= @lending.book.title %>
   </li>

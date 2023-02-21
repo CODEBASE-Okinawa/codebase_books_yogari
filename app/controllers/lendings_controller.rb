@@ -12,6 +12,7 @@ class LendingsController < ApplicationController
 
   def update
     lending = Lending.find(params[:id])
+
     if lending.update(return_status: true)
       flash[:success] = "返却が完了しました"
       redirect_to book_path

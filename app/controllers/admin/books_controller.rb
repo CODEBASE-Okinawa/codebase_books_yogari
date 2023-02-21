@@ -10,7 +10,6 @@ class Admin::BooksController < ApplicationController
   end
 
   def create
-    # debugger
     @book = Book.new(book_params)
     @book.image.attach(params[:book][:image])
     if @book.save
@@ -19,7 +18,6 @@ class Admin::BooksController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
-    # debugger
   end
 
   private

@@ -1,8 +1,8 @@
 <p>本管理 > 本登録</p>
 <%= form_with(model: @book, url: admin_books_path) do |f| %>
-    <%= render 'error_messages' %>
-    <%= f.file_field :image %>
-    <%= f.label :タイトル %>
-    <%= f.text_field :title %>
-    <%= f.submit "本を登録する" %>
+  <%= render 'error_messages' %>
+  <%= f.file_field :image %>
+  <%= f.label :タイトル %>
+  <%= f.text_field :title %>
+  <%= f.submit "本を登録する" %>
 <% end %>

@@ -14,7 +14,7 @@
       <% if book.image.attached? %>
         <%= image_tag book.image, size: 200 %>
       <% else %>
-        <%= image_tag 'sample.jpeg', size: 200 %>
+        <%= image_tag 'no_image.jpeg', size: 200 %>
       <% end %>
       <%= link_to book.title, book %>
       <p>ステータスが表示されます</p>

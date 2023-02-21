@@ -4,7 +4,7 @@
     <% if @lending.book.image.attached? %>
       <%= image_tag @lending.book.image, size: 500 %>
     <% else %>
-      <%= image_tag 'sample.jpeg', size: 500 %>
+      <%= image_tag 'no_image.jpeg', size: 500 %>
     <% end %>
   <li>
     <%= @lending.book.title %>

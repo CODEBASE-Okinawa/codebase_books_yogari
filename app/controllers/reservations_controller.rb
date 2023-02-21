@@ -39,7 +39,6 @@ class ReservationsController < ApplicationController
     return unless current_user.nil?
 
     flash[:danger] = "Please log in."
-    # redirect_to login_url, status: :see_other
-    redirect_to books_url, status: :see_other
+    redirect_to new_user_session_path, status: :see_other
   end
 end

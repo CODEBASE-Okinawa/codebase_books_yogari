@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :books
-  resources :reservations
+  resources :reservations, only: [:index, :show, :create, :destroy]
   resources :lendings, only: [:index, :show, :create, :update]
 end

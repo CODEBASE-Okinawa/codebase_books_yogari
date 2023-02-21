@@ -18,6 +18,15 @@ class ReservationsController < ApplicationController
     redirect_to reservations_path
   end
 
+  def destroy
+    reservation = Reservation.find(params[:id])
+    if reservation.destroy
+      redirect_to reservations_path
+    else
+      redirect_to request.referer
+    end
+  end
+
   def reservation_param(data)
     @reservation_info = { book_id: data[:book_id],
                           user_id: current_user.id,

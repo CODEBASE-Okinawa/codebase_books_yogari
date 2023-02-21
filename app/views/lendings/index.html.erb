@@ -1,24 +1,22 @@
-<h1>借りている本</h1>
-<% if @lendings.any? %>
-  <% @lendings.each do |lend| %>
-    <ul>
-      <li>
-        <% if lend.book.image.attached? %>
-          <%= link_to (image_tag lend.book.image, size: 200), lending_path(lend) %>
-        <% else %>
-          <%= link_to (image_tag 'no_image.jpeg', size: 200), lending_path(lend) %>
-        <% end %>
-      </li>
-      <li>
-        <%= lend.book.title %>
-      </li>
-      <li>
-        <%= lend.return_at.strftime("%Y年%m月%d日") %>まで
-      </li>
-      <%= lend.user.name %>
-      <%= lend.return_status %>
-    </ul>
-  <% end %>
+<h1 class="text-3xl">借りている本</h1>
+
+<% if @lendings.exists? %>
+  <div class="grid grid-cols-4 gap-10 mt-10">
+    <% @lendings.each do |lending| %>
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white">
+        <div class="flex flex-col items-center pb-10">
+          <% if lending.book.image.attached? %>
+            <%= image_tag lending.book.image, size: 200 %>
+          <% else %>
+            <%= image_tag 'no_image.jpeg', size: 200 %>
+          <% end %>
+          <h5 class="mb-1 text-xl font-medium text-black"><%= lending.book.title %></h5>
+          <span class="text-sm text-black">ステータスが表示されます</span>
+          <span><%= lending.return_at.strftime("%Y年%m月%d日") %> まで</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% else %>
-  <p>現在借りている本はありません</p>
+  <h2>現在借りている本はありません</h2>
 <% end %>

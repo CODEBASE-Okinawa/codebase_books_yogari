@@ -17,6 +17,11 @@ ActiveRecord::Base.transaction do
     password_confirmation: "password",
     role: 1
   )
+
+  user = User.first
+  10.times do |n|
+    user.reservations.create!(book_id: n + 1, reservation_at: Time.now + (3+n).days, return_at: Time.now + (4+n).days)
+  end
   
   User.create!(email: "guest1@mail.com",
                name: "guest1",

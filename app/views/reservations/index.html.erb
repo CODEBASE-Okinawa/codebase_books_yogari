@@ -1,20 +1,26 @@
-<h1>予約一覧</h1>
+<h1 class="text-3xl">予約一覧</h1>
 
 <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
 
 <% if @reservations.exists? %>
-  <ul class="books">
+  <div class="grid grid-cols-4 gap-10 mt-10">
     <% @reservations.each do |reservation| %>
-      <li>
-        <%= image_tag 'sample.jpeg', size: 200 %>
-        <%= link_to reservation.book.title, reservation %>
-        <p>ステータスが表示されます</p>
-        <p><%= reservation.reservation_at.strftime("%Y年%m月%d日")%> から</p>
-      </li>
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white">
+        <div class="flex flex-col items-center pb-10">
+          <% if reservation.book.image.attached? %>
+            <%= image_tag reservation.book.image, size: 200 %>
+          <% else %>
+            <%= image_tag 'no_image.jpeg', size: 200 %>
+          <% end %>
+          <h5 class="mb-1 text-xl font-medium text-black"><%= reservation.book.title %></h5>
+          <span class="text-sm text-black">ステータスが表示されます</span>
+          <span><%= reservation.reservation_at.strftime("%Y年%m月%d日") %> から</span>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <h2>現在予約している本はありません</h2>
 <% end %>

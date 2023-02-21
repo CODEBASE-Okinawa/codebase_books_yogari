@@ -69,7 +69,7 @@ ActiveRecord::Base.transaction do
   # テストユーザーが借りている本
   books = Book.all
   user = User.find_by(email: "test@example.com")
-  books.each_with_index do |book, i|
+  books.each_with_index  do |book, i|
     if i.even?
       book.lendings.create!( user_id: user.id,
                              return_at: Date.today.days_since(i))

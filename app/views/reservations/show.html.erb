@@ -1,7 +1,22 @@
 <p><%= link_to "予約一覧", reservations_path %>  本のタイトル表示されます </p>
-<%= image_tag 'sample.jpeg', size: 200  %>
-<h2><%= @reservation.book.title %></h2>
-<p>ステータスが表示されます</p>
-<%= button_to "予約キャンセル", reservation_path, method: :delete %>
-<p>以下の日程で予約しています</p>
-<p><%= @reservation.reservation_at%> ~ <%= @reservation.return_at %></p>
+
+<div class="flex">
+  <div>
+    <% if @reservation.book.image.attached? %>
+      <%= image_tag @reservation.book.image, size: 200 %>
+    <% else %>
+      <%= image_tag 'no_image.jpeg', size: 200 %>
+    <% end %>
+  </div>
+  <div>
+    <h2 class="text-5xl font-bold"><%= @reservation.book.title %></h2>
+    <p>予約しています(ステータスが表示されます)</p>
+
+    <div class="mt-6">
+      <%= button_to "予約キャンセル", reservation_path, method: :delete, class: "w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-orange-500 border border-gray-300 rounded-lg" %>
+
+      <p>以下の日程で予約しています</p>
+      <p><%= @reservation.reservation_at %> ~ <%= @reservation.return_at %></p>
+    </div>
+  </div>
+</div>

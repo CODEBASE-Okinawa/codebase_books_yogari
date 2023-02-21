@@ -7,9 +7,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
-    return unless @reservation.nil?
-
-    redirect_to book_path(@reservation.book.id)
+    redirect_to book_path(@reservation.book) unless @reservation
   end
 
   def create

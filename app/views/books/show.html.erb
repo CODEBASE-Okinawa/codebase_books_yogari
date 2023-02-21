@@ -1,31 +1,44 @@
-<p><%= link_to "本一覧", books_path %> >  <%= @book.title %> </p>
-  <% if @book.image.attached? %>
-    <%= image_tag @book.image, size: 500 %>
-  <% else %>
-    <%= image_tag 'no_image.jpeg', size: 500 %>
-  <% end %>
-  <h2><%= @book.title %></h2>
-  <p>ステータスが表示されます</p>
+<p><%= link_to "本一覧", books_path %> >  <%= @book.title %></p>
 
-<%= form_with(url: reservations_path) do |f| %>
-  <%= f.hidden_field :book_id, :value => @book.id %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.date_field :start_at, value: Date.today, min: Date.today, class: 'form-control' %>
-  <%= f.label :start_at, 'から' %>
-  <%= f.date_field :return_at, value: Date.today+7, min: Date.today, class: 'form-control' %>
-  <%= f.label :return_at, 'まで' %>
-  <button type="submit" formaction = "/lendings" method="post">借りる</button>
-  <button type="submit">予約する</button>
-<% end %>
-
-<% if @reservations.exists?%>
-  <div class="resevation_list">
-    <p>以下の日程で予約が入っています。</p>
-    <p>日程が被らないように貸出・予約しましょう</p>
-    <ul class="microposts">
-      <%= render @reservations %>
-    </ul>
+<div class="flex">
+  <div>
+    <% if @book.image.attached? %>
+      <%= image_tag @book.image, size: 200 %>
+    <% else %>
+      <%= image_tag 'no_image.jpeg', size: 200 %>
+    <% end %>
   </div>
-<% else %>
-  <p>現在予約は入っていません。</p>
-<% end %>
+  <div>
+    <h2 class="text-5xl font-bold"><%= @book.title %></h2>
+    <p>ステータスが表示されます</p>
+
+    <%= form_with(url: reservations_path) do |f| %>
+      <%= f.hidden_field :book_id, :value => @book.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="flex flex-col">
+        <div>
+          <%= f.date_field :start_at, value: Date.today, min: Date.today %>
+          <%= f.label :start_at, 'から' %>
+        </div>
+        <div>
+          <%= f.date_field :return_at, value: Date.today + 7, min: Date.today %>
+          <%= f.label :return_at, 'まで' %>
+        </div>
+      </div>
+      <button type="submit" formaction="/lendings" method="post" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg">借りる</button>
+      <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-yellow-500 border border-gray-300 rounded-lg">予約する</button>
+    <% end %>
+
+    <% if @reservations.exists? %>
+      <div>
+        <p>以下の日程で予約が入っています。</p>
+        <p>日程が被らないように貸出・予約しましょう</p>
+        <ul>
+          <%= render @reservations %>
+        </ul>
+      </div>
+    <% else %>
+      <p>現在予約は入っていません。</p>
+    <% end %>
+  </div>
+</div>

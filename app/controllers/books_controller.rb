@@ -2,6 +2,8 @@ class BooksController < ApplicationController
   before_action :redirect_to_admin_books, only: [:index]
   def index
     @books = Book.all
+    @reservations = Reservation.all
+    @lendings = Lending.all
   end
 
   def show

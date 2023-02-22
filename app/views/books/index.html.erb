@@ -11,7 +11,7 @@
             <%= image_tag 'no_image.jpeg', size: 200 %>
           <% end %>
           <h5 class="mb-1 text-xl font-medium text-black"><%= book.title %></h5>
-          <span class="text-sm text-black">ステータスが表示されます</span>
+          <span class="text-sm text-black"><%= show_status(book.id, @reservations, @lendings) %></span>
         </div>
       </div>
     <% end %>

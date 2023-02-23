@@ -2,7 +2,7 @@ class Admin::BooksController < ApplicationController
   before_action :check_admin
 
   def index
-    @books = Book.all
+    @books = Book.joins(:lendings).eager_load(:lendings).order(:id)
   end
 
   def new

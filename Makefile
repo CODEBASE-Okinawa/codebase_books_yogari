@@ -9,7 +9,13 @@ build: ## build develoment environment
 	docker compose run --rm app bin/rails db:seed
 
 serve: ## Run Server
-	docker compose up app
+	docker compose up -d app
+
+app-log: ## Tail app log
+	docker compose logs app -f
+
+db-log: ## Tail postgres log
+	docker compose logs postgres -f
 
 bundle: ## Run Bundle install
 	docker compose run --rm app bundle
@@ -25,9 +31,6 @@ migrate: ## Run db:migrate
 
 migrate-status: ## Run db:migrate
 	docker compose exec app bin/rails db:migrate:status
-
-db-log: ## Tail mariadb log
-	docker compose exec mysql tail -f /var/log/mysql/mysql-query.log
 
 .PHONY: help
 help:

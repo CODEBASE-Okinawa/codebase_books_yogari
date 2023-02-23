@@ -15,16 +15,6 @@ services:
     depends_on:
       - postgres
     command: bash -c 'rm -f ./tmp/pids/server.pid && bin/rails s -b 0.0.0.0'
-  mysql:
-    image: mysql:8.0
-    ports:
-      - 3306:3306
-    volumes:
-      - mysql-volume:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      - MYSQL_ROOT_PASSWORD=pass
-      - TZ="Asia/Tokyo"
   postgres:
     image: postgres:15
     restart: unless-stopped
@@ -35,8 +25,13 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - 5432:5432
+    command: postgres -c log_destination=stderr -c log_statement=all
+    logging:
+      options:
+        max-size: "10k"
+        max-file: "5"
+
 volumes:
-  mysql-volume:
   postgres-volume:
   bundle-volume:
   node-module-volume:

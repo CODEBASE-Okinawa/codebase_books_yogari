@@ -18,7 +18,7 @@
       <ul>
         <% if current_user %>
           <li>
-            <p class="flex justify-center items-center p-2 text-base font-normal text-black bg-green-300 hover:bg-green-600"><%= current_user.name %></p>
+            <p class="flex justify-center items-center p-2 text-base font-normal text-black bg-green-300 hover:bg-green-600"><%= current_user&.name %></p>
           </li>
         <% end %>
         <% if current_user&.admin? %>

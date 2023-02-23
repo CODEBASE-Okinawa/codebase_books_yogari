@@ -3,7 +3,7 @@ class LendingsController < ApplicationController
   before_action :redirect_lendings, only: :show
 
   def index
-    @lendings = current_user.lendings.not_yet_returned
+    @lendings = current_user&.lendings.not_yet_returned
   end
 
   def show
@@ -43,13 +43,13 @@ class LendingsController < ApplicationController
 
   def lending_params(data)
     @lending_params = { book_id: data[:book_id],
-                        user_id: current_user.id,
+                        user_id: current_user&.id,
                         return_at: data[:return_at] }
   end
 
   # サインインしているユーザーが借りていない本だったら、貸出一覧ページへリダイレクト
   def redirect_lendings
-    if current_user.lendings.find_by(id: params[:id]).blank?
+    if current_user&.lendings.find_by(id: params[:id]).blank?
       redirect_to lendings_path
     end
   end

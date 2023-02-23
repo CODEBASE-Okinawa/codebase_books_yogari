@@ -9,7 +9,7 @@ build: ## build develoment environment
 	docker compose run --rm app bin/rails db:seed
 
 serve: ## Run Server
-	docker compose up app
+	docker compose up -d app
 
 bundle: ## Run Bundle install
 	docker compose run --rm app bundle

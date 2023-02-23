@@ -15,7 +15,7 @@ class LendingsController < ApplicationController
 
     if lending.update(return_status: true)
       flash[:success] = "返却が完了しました"
-      redirect_to book_path
+      redirect_to book_path(lending.book)
     else
       flash.now[:faild] = "返却に失敗しました"
       render "show", status: :unprocessable_entity

@@ -1,8 +1,46 @@
-<h1>ユーザー一覧</h1>
-<% @users.each do |user| %>
-  <li>ID : <%= user.id %></li>
-  <li>名前 : <%= user.name %></li>
-  <li>Eメール : <%= user.email %></li>
-  <li>登録日 : <%= user.created_at.strftime('%Y/%m/%d %H:%M') %></li>
-  <li>累計貸出数 : <%= user.lendings.count %></li>
-<% end %>
+<h1 class="text-3xl">ユーザー一覧</h1>
+
+<div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left text-black">
+    <thead class="text-xs text-black border-b uppercase bg-white">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        ID
+      </th>
+      <th scope="col" class="px-6 py-3">
+        名前
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Eメール
+      </th>
+      <th scope="col" class="px-6 py-3">
+        登録日
+      </th>
+      <th scope="col" class="px-6 py-3">
+        累計貸出数
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr class="bg-white border-b">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+          <%= user.id %>
+        </th>
+        <td class="px-6 py-4">
+          <%= user.name %>
+        </td>
+        <td class="px-6 py-4">
+          <%= user.email %>
+        </td>
+        <td class="px-6 py-4">
+          <%= user.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+        </td>
+        <td class="px-6 py-4">
+          <%= user.lendings.count %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

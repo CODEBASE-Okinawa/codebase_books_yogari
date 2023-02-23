@@ -2,6 +2,7 @@ class Book < ApplicationRecord
   has_many :lendings, dependent: :destroy
   has_many :reservations
   has_one_attached :image
+  validates :title, presence: true
 
   def is_lending?
     lendings.pluck(:return_status).include?(false) ? true : false

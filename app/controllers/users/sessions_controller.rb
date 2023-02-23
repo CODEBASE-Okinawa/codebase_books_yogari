@@ -26,7 +26,14 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   # ログイン後、本一覧へリダイレクト
-  def after_sign_in_path_for(resource) 
-    books_path
+  def after_sign_in_path_for(resource)
+    session[:request] ? redirect_to_previous_page : books_path
+  end
+
+  #記憶したurlがある場合、そのページへリダイレクト
+  def redirect_to_previous_page
+    previous_page = session[:request]
+    session[:request] = nil
+    previous_page
   end
 end

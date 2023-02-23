@@ -17,7 +17,7 @@ class LendingsController < ApplicationController
       flash[:success] = "返却が完了しました"
       redirect_to book_path(lending.book)
     else
-      flash.now[:faild] = "返却に失敗しました"
+      flash.now[:failed] = "返却に失敗しました"
       render "show", status: :unprocessable_entity
     end
   end
@@ -34,6 +34,10 @@ class LendingsController < ApplicationController
 
   # lendingページへのアクセスは、サインインが必要
   def require_signed_in
+    #現在アクセスしているページのurlを記憶
+    session[:request] = nil
+    session[:request] = request.original_url
+    
     redirect_to new_user_session_path unless user_signed_in?
   end
 

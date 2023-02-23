@@ -1,9 +1,4 @@
 <h1 class="text-3xl">予約一覧</h1>
-
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
-
 <% if @reservations.exists? %>
   <div class="grid grid-cols-4 gap-10 mt-10">
     <% @reservations.each do |reservation| %>

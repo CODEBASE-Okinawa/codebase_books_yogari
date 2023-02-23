@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :logged_in_user, only: %i[index show]
+  before_action :delete_old_reservations, only: %i[show]
   def index
     @reservations = Reservation.where(user_id: current_user&.id).where("reservation_at >= ?",
                                                                         Time.now).order(reservation_at: :asc)
@@ -42,5 +43,12 @@ class ReservationsController < ApplicationController
     session[:request] = nil
     session[:request] = request.original_url
     redirect_to new_user_session_path, status: :see_other
+  end
+
+  def delete_old_reservations
+    old_reservations = Reservation.where("reservation_at < ?", Date.today)
+    if old_reservations.destroy_all && old_reservations.exists?
+      redirect_to reservations_path
+    end
   end
 end

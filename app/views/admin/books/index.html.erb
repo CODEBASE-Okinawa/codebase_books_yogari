@@ -1,11 +1,77 @@
-<!--TODO: テーブルで表示する-->
-<% @books.each do |book| %>
-  <li>
-    <% if book.image.attached? %>
-      <%= image_tag book.image, size: 200 %>
-    <% else %>
-      <%= image_tag 'no_image.jpeg', size: 200 %>
+<div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left text-black">
+    <thead class="text-xs text-black border-b uppercase bg-white">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        ID
+      </th>
+      <th scope="col" class="px-6 py-3">
+        画像
+      </th>
+      <th scope="col" class="px-6 py-3">
+        タイトル
+      </th>
+      <th scope="col" class="px-6 py-3">
+        ステータス
+      </th>
+      <th scope="col" class="px-6 py-3">
+        開始
+      </th>
+      <th scope="col" class="px-6 py-3">
+        終了
+      </th>
+      <th scope="col" class="px-6 py-3">
+        ユーザー
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @books.each do |book| %>
+      <tr class="bg-white border-b">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+          <%= book.id %>
+        </th>
+        <td class="px-6 py-4">
+          <% if book.image.attached? %>
+            <%= image_tag book.image, size: 100 %>
+          <% else %>
+            <%= image_tag 'no_image.jpeg', size: 100 %>
+          <% end %>
+        </td>
+        <td class="px-6 py-4">
+          <%= book.title %>
+        </td>
+        <td class="px-6 py-4">
+          <% if book.is_lending? %>
+            貸出中
+          <% else %>
+            貸出可能
+          <% end %>
+        </td>
+        <td class="px-6 py-4">
+          <% if book.is_lending? %>
+            <%= book.lending_start_at.strftime("%Y/%m/%d") %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td class="px-6 py-4">
+          <% if book.is_lending? %>
+            <%= book.lending_start_at.strftime("%Y/%m/%d") %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td class="px-6 y-4">
+          <% if book.is_lending? %>
+            <p><%= book.lending_user.name %></p>
+            <p><%= book.lending_user.email %></p>
+          <% else %>
+            -
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-    <%= link_to book.title, book %>
-  </li>
-<% end %>
+    </tbody>
+  </table>
+</div>

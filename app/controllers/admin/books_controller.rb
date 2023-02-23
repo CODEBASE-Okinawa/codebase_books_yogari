@@ -2,7 +2,7 @@ class Admin::BooksController < ApplicationController
   before_action :check_admin
 
   def index
-    @books = Book.all
+    @books = Book.eager_load(:lendings).order(:id)
   end
 
   def new
@@ -13,7 +13,7 @@ class Admin::BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.image.attach(params[:book][:image])
     if @book.save
-      flash[:sucess] = "本を登録しました"
+      flash[:success] = "本を登録しました"
       redirect_to admin_books_path
     else
       render 'new', status: :unprocessable_entity

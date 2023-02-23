@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :logged_in_user, only: %i[index show]
   def index
-    @reservations = Reservation.where(user_id: current_user.id).where("reservation_at >= ?",
+    @reservations = Reservation.where(user_id: current_user&.id).where("reservation_at >= ?",
                                                                         Time.now).order(reservation_at: :asc)
   end
 
@@ -29,14 +29,14 @@ class ReservationsController < ApplicationController
 
   def reservation_param(data)
     @reservation_info = { book_id: data[:book_id],
-                          user_id: current_user.id,
+                          user_id: current_user&.id,
                           reservation_at: data[:start_at],
                           return_at: data[:return_at] }
   end
 
   # ログイン済みユーザーかどうか確認
   def logged_in_user
-    return unless current_user.nil?
+    return unless current_user&.nil?
 
     flash[:failed] = "Please log in."
     session[:request] = nil

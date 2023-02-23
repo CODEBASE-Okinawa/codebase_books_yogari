@@ -13,12 +13,12 @@
 
 <body>
 <div class="flex">
-  <aside id="default-sidebar" class="w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+  <aside id="default-sidebar" class="fixed w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     <div class="h-full py-4 overflow-y-auto bg-blue-600 items-center">
       <ul>
         <% if current_user %>
           <li>
-            <p class="flex justify-center items-center p-2 text-base font-normal text-black bg-green-300 hover:bg-green-600"><%= current_user.name %></p>
+            <p class="flex justify-center items-center p-2 text-base font-normal text-black bg-green-300 hover:bg-green-600"><%= current_user&.name %></p>
           </li>
         <% end %>
         <% if current_user&.admin? %>

@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
 
   # ログイン済みユーザーかどうか確認
   def logged_in_user
-    return unless current_user&.nil?
+    return unless current_user.nil?
 
     flash[:failed] = "Please log in."
     session[:request] = nil

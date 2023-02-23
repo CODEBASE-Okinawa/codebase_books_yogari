@@ -10,7 +10,7 @@
   </div>
   <div>
     <h2 class="text-5xl font-bold"><%= @lending.book.title %></h2>
-    <p>現在借りています(ステータスが表示されます)</p>
+    <span class="text-sm text-black" style = background:#0096FF;font-weight: bold;">現在借りています</span>
 
     <div class="mt-6">
       <%= button_to("返却する", lending_path, method: :patch, class:"w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-orange-500 border border-gray-300 rounded-lg") %>

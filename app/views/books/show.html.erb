@@ -10,7 +10,11 @@
   </div>
   <div>
     <h2 class="text-5xl font-bold"><%= @book.title %></h2>
-    <p>ステータスが表示されます</p>
+    <% if @book.lendings.exists?(return_status: false) %>
+      <span class="text-sm text-black"style = background:#FF2c2c;">貸出中です</span>
+    <% else %>
+      <span class="text-sm text-black" style = background:#98FF98;font-weight: bold;">貸出可能</span>
+    <% end %>
 
     <%= form_with(url: reservations_path) do |f| %>
       <%= f.hidden_field :book_id, :value => @book.id %>
@@ -25,7 +29,8 @@
           <%= f.label :return_at, 'まで' %>
         </div>
       </div>
-      <button type="submit" formaction="/lendings" method="post" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg">借りる</button>
+      
+      <button type="submit" formaction="/lendings" method="post" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"    <%= "disabled style = background:#9ca3af;color:#ffffff;" if @book.lendings.exists?(return_status: false) %>>借りる</button>
       <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-yellow-500 border border-gray-300 rounded-lg">予約する</button>
     <% end %>
 

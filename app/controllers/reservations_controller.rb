@@ -40,7 +40,7 @@ class ReservationsController < ApplicationController
   def logged_in_user
     return unless current_user.nil?
 
-    flash[:failed] = "Please log in."
+    flash[:failed] = "ログインしてください"
     session[:request] = nil
     session[:request] = request.original_url
     redirect_to new_user_session_path, status: :see_other

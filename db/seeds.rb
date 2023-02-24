@@ -1,8 +1,8 @@
 ActiveRecord::Base.transaction do
-  # 追加のユーザーをまとめて生成する
   10.times do
     Book.create!(title: Faker::Book.title)
   end
+
   User.create!(
     name: "admin",
     email: "admin@example.com",
@@ -10,73 +10,39 @@ ActiveRecord::Base.transaction do
     password_confirmation: "password",
     role: 0
   )
-  User.create!(
-    name: "テストユーザー",
-    email: "test@example.com",
-    password: "password",
-    password_confirmation: "password",
-    role: 1
-  )
+
+  3.times do |n|
+    User.create!(
+      name: "テストユーザー#{n + 1}",
+      email: "test#{n + 1}@example.com",
+      password: "password",
+      password_confirmation: "password",
+      role: 1
+    )
+  end
 
   user = User.first
-  10.times do |n|
-    user.reservations.create!(book_id: n + 1, reservation_at: Time.now + (3+n).days, return_at: Time.now + (4+n).days)
+
+  3.times do |n|
+    user.reservations.create!(
+      book_id: n + 1,
+      reservation_at: Time.now + (n + 1).days,
+      return_at: Time.now + (n + 7).days
+    )
   end
-  
-  User.create!(email: "guest1@mail.com",
-               name: "guest1",
-               password: "password")
-  User.create!(email: "guest2@mail.com",
-               name: "guest2",
-               password: "password")
-  User.create!(email: "guest3@mail.com",
-               name: "guest3",
-               password: "password")
-  User.create!(email: "guest4@mail.com",
-               name: "guest4",
-               password: "password")
 
-  # reservations のサンプルデータ
-  Reservation.create!(user_id: 1,
-                      book_id: 1,
-                      reservation_at: Time.now + 3.days,
-                      return_at: Time.now + 4.days)
-  Reservation.create!(user_id: 2,
-                      book_id: 1,
-                      reservation_at: Time.now + 5.days,
-                      return_at: Time.now + 7.days)
-  Reservation.create!(user_id: 3,
-                      book_id: 1,
-                      reservation_at: Time.now + 8.days,
-                      return_at: Time.now + 10.days)
-  Reservation.create!(user_id: 4,
-                      book_id: 1,
-                      reservation_at: Time.now - 6.days,
-                      return_at: Time.now - 3.days)
-  Reservation.create!(user_id: 1,
-                      book_id: 1,
-                      reservation_at: Time.now - 2.days,
-                      return_at: Time.now + 2.days)
-  Reservation.create!(user_id: 1,
-                      book_id: 3,
-                      reservation_at: Time.now + 3.days,
-                      return_at: Time.now + 6.days)
-  Reservation.create!(user_id: 2,
-                      book_id: 3,
-                      reservation_at: Time.now + 7.days,
-                      return_at: Time.now + 10.days)
-
-  # テストユーザーが借りている本
-  books = Book.all
-  user = User.find_by(email: "test@example.com")
-  books.each_with_index do |book, i|
-    if i.even?
-      book.lendings.create!( user_id: user.id,
-                             return_at: Date.today.days_since(i))
+  5.times do |n|
+    if n.even?
+      user.lendings.create!(
+        book_id: n + 4,
+        return_at: Date.today.days_since(n)
+      )
     else
-      book.lendings.create!( user_id: user.id,
-                             return_at: Date.today.days_ago(i),
-                             return_status: true )
+      user.lendings.create!(
+        book_id: n + 4,
+        return_at: Date.today.days_ago(n),
+        return_status: true
+      )
     end
   end
 end

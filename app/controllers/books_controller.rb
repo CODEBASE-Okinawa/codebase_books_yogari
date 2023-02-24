@@ -31,10 +31,11 @@ class BooksController < ApplicationController
 
   def logged_in_user
     return unless current_user.nil?
-
-    flash[:failed] = "Please log in."
+    #現在アクセスしているページのurlを記憶
     session[:request] = nil
     session[:request] = request.original_url
+    
+    flash[:failed] = "ログインしてください"
     redirect_to new_user_session_path, status: :see_other
   end
 end

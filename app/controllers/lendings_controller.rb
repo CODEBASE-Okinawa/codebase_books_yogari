@@ -37,7 +37,8 @@ class LendingsController < ApplicationController
     #現在アクセスしているページのurlを記憶
     session[:request] = nil
     session[:request] = request.original_url
-    
+
+    flash[:failed] = "ログインしてください"
     redirect_to new_user_session_path unless user_signed_in?
   end
 

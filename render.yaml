@@ -1,6 +1,6 @@
 databases:
-  - name: codebase_books_power_production
-    databaseName: codebase_books_power_production
+  - name: codebase_books_power
+    databaseName: codebase_books_power
     user: codebase_books_power
 
 services:

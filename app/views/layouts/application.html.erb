@@ -49,7 +49,7 @@
     </div>
   </aside>
 
-  <div class="w-full">
+  <div class="w-full pl-64">
     <% flash.each do |key, value| %>
       <% if key == "success" || key == "notice" %>
         <%= content_tag(:div, value, class: "flex items-center text-center text-white justify-center h-12 bg-green-300 w-full") %>

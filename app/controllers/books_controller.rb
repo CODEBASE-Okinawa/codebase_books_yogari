@@ -31,6 +31,7 @@ class BooksController < ApplicationController
 
   def logged_in_user
     return unless current_user.nil?
+    
     #現在アクセスしているページのurlを記憶
     session[:request] = nil
     session[:request] = request.original_url

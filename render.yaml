@@ -1,7 +1,7 @@
 databases:
-  - name: codebase_books_power
-    databaseName: codebase_books_power
-    user: codebase_books_power
+  - name: codebase
+    databaseName: codebase
+    user: codebase
 
 services:
   - type: codebase_books_power

@@ -21,4 +21,5 @@ test:
 
 production:
   <<: *default
+  username: codebase
   url: <%= ENV['DATABASE_URL'] %>

@@ -1,10 +1,10 @@
 databases:
-  - name: codebase
-    databaseName: codebase
-    user: codebase
+  - name: codebase_books_power
+    databaseName: codebase_books_power
+    user: codebase_books_power
 
 services:
-  - type: codebase_books_power
+  - type: web
     name: codebase_books_power
     env: ruby
     buildCommand: "./bin/render-build.sh"

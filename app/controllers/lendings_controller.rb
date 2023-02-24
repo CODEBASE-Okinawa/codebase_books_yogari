@@ -1,5 +1,5 @@
 class LendingsController < ApplicationController
-  before_action :require_signed_in, only: [:index, :show]
+  before_action :redirect_to_sign_in, only: [:index, :show], unless: :user_signed_in?
   before_action :redirect_lendings, only: :show
 
   def index
@@ -31,16 +31,6 @@ class LendingsController < ApplicationController
   end
 
   private
-
-  # lendingページへのアクセスは、サインインが必要
-  def require_signed_in
-    #現在アクセスしているページのurlを記憶
-    session[:request] = nil
-    session[:request] = request.original_url
-
-    flash[:failed] = "ログインしてください"
-    redirect_to new_user_session_path unless user_signed_in?
-  end
 
   def lending_params(data)
     @lending_params = { book_id: data[:book_id],

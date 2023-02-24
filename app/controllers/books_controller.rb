@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :redirect_to_admin_books, only: [:index]
-  before_action :logged_in_user, only: %i[index show]
+  before_action :redirect_to_sign_in, only: %i[index show], unless: :user_signed_in?
   before_action :redirect_to_reservation_lending_show, only:[:show]
   def index
     @books = Book.all
@@ -27,16 +27,5 @@ class BooksController < ApplicationController
     elsif @book.lendings.exists?(return_status: false, user_id: current_user.id)
       redirect_to lending_path(@book.lendings.find_by(return_status: false, user_id: current_user.id))
     end
-  end
-
-  def logged_in_user
-    return unless current_user.nil?
-    
-    #現在アクセスしているページのurlを記憶
-    session[:request] = nil
-    session[:request] = request.original_url
-    
-    flash[:failed] = "ログインしてください"
-    redirect_to new_user_session_path, status: :see_other
   end
 end

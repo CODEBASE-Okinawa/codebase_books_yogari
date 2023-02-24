@@ -21,7 +21,7 @@ ActiveRecord::Base.transaction do
     )
   end
 
-  user = User.first
+  user = User.find_by(email: "test1@example.com")
 
   3.times do |n|
     user.reservations.create!(

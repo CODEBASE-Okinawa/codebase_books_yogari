@@ -22,6 +22,7 @@ class ReservationsController < ApplicationController
   def destroy
     reservation = Reservation.find(params[:id])
     if reservation.destroy
+      flash[:success] = "予約のキャンセルが完了しました"
       redirect_to reservations_path
     else
       redirect_to request.referer

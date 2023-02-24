@@ -42,6 +42,7 @@
         <% if user_signed_in? %>
           <%= link_to 'ログアウト', destroy_user_session_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600", data: { turbo_method: :delete } %>
         <% else %>
+          <%= link_to '新規登録', new_user_registration_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600" %>
           <%= link_to 'ログイン', new_user_session_path, class: "flex justify-center items-center p-2 text-base font-normal text-black bg-gray-300 hover:bg-gray-600" %>
         <% end %>
       </ul>
@@ -50,7 +51,7 @@
 
   <div class="w-full">
     <% flash.each do |key, value| %>
-      <% if key == "success" %>
+      <% if key == "success" || key == "notice" %>
         <%= content_tag(:div, value, class: "flex items-center text-center text-white justify-center h-12 bg-green-300 w-full") %>
       <% else %>
         <%= content_tag(:div, value, class: "flex items-center text-center justify-center h-12 bg-red-300 w-full") %>

@@ -1,0 +1,18 @@
+databases:
+  - name: codebase_books_power_production
+    databaseName: codebase_books_power_production
+    user: codebase_books_power
+
+services:
+  - type: codebase_books_power
+    name: codebase_books_power
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: codebase_books_power
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

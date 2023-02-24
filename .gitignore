@@ -38,3 +38,5 @@ vendor/bundle
 .solargraph
 .env
 .gem_rbs_collection/
+
+/config/credentials/production.key

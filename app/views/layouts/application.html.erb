@@ -50,7 +50,7 @@
 
   <div class="w-full">
     <% flash.each do |key, value| %>
-      <% if key == "success" %>
+      <% if key == "success" || "notice" %>
         <%= content_tag(:div, value, class: "flex items-center text-center text-white justify-center h-12 bg-green-300 w-full") %>
       <% else %>
         <%= content_tag(:div, value, class: "flex items-center text-center justify-center h-12 bg-red-300 w-full") %>

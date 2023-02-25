@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_to_sign_in
+    session[:request] = nil
+    session[:request] = request.original_url
+
+    flash[:failed] = "ログインしてください"
+    redirect_to new_user_session_path, status: :see_other
+  end
+
   def render_404(e = nil)
     logger.info "Rendering 404 with exception: #{e.message}" if e
 

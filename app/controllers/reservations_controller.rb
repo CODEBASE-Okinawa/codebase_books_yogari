@@ -1,9 +1,10 @@
 class ReservationsController < ApplicationController
-  before_action :logged_in_user, only: %i[index show]
+  before_action :redirect_to_sign_in, only: %i[index show], unless: :user_signed_in?
   before_action :delete_old_reservations, only: %i[show]
+
   def index
     @reservations = Reservation.where(user_id: current_user&.id).where("reservation_at >= ?",
-                                                                        Time.now).order(reservation_at: :asc)
+                                                                       Time.now).order(reservation_at: :asc)
   end
 
   def show
@@ -34,16 +35,6 @@ class ReservationsController < ApplicationController
                           user_id: current_user&.id,
                           reservation_at: data[:start_at],
                           return_at: data[:return_at] }
-  end
-
-  # ログイン済みユーザーかどうか確認
-  def logged_in_user
-    return unless current_user.nil?
-
-    flash[:failed] = "ログインしてください"
-    session[:request] = nil
-    session[:request] = request.original_url
-    redirect_to new_user_session_path, status: :see_other
   end
 
   def delete_old_reservations

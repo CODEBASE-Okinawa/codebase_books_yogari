@@ -11,7 +11,16 @@
             <%= image_tag 'no_image.jpg', size: 200 %>
           <% end %>
           <h5 class="mb-1 text-xl font-medium text-black"><%= book.title %></h5>
-          <%= show_status(book.id, @reservations, @lendings) %>
+
+          <% if show_status(book) == "lending" %>
+            <span class="text-sm text-black" style = "background:#0096FF;font-weight:bold;">現在借りています</span>
+          <% elsif show_status(book) == "reserved" %>
+            <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
+          <% elsif show_status(book) == "lent" %>
+            <span class="text-sm text-black" style = "background:#FF2c2c;font-weight:bold;">貸出中</span>
+          <% else %>
+            <span class="text-sm text-black" style = "background:#98FF98;font-weight:bold;">貸出可能</span>
+          <% end %>
           
         </div>
       </div>

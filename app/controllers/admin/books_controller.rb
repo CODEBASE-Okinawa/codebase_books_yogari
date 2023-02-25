@@ -2,7 +2,7 @@ class Admin::BooksController < ApplicationController
   before_action :check_admin
 
   def index
-    @books = Book.eager_load(:lendings).order(:id)
+    @books = Book.eager_load(:lending).with_attached_image.order(:id)
   end
 
   def new

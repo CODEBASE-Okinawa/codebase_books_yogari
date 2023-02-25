@@ -2,11 +2,14 @@ databases:
   - name: codebase_books_power
     databaseName: codebase_books_power
     user: codebase_books_power
+    region: singapore
 
 services:
   - type: web
     name: codebase_books_power
     env: ruby
+    region: singapore
+    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:

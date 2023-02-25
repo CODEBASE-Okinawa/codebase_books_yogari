@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   before_action :redirect_to_admin_books, only: [:index]
   before_action :logged_in_user, only: %i[show]
+  helper_method :show_status
+
   def index
     @books = Book.eager_load(:reservation_active, :lend_active)
   end

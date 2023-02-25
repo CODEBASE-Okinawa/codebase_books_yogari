@@ -1,0 +1,5 @@
+class ReservationsController < ApplicationController
+  def reservation_param: (ActionController::Parameters data) -> {}
+
+  def delete_old_reservations: () -> void
+end

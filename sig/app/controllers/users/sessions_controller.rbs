@@ -1,0 +1,19 @@
+class Users::SessionsController < Devise::SessionsController
+  # GET /resource/sign_in
+  def new: () -> untyped
+
+  # POST /resource/sign_in
+  def create: () -> untyped
+
+  # DELETE /resource/sign_out
+  def destroy: () -> untyped
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_in_params: () -> untyped
+
+  # ログイン後、本一覧へリダイレクト
+  def after_sign_in_path_for: (untyped resource) -> untyped
+
+  # 憶したurlがある場合、そのページへリダイレクト
+  def redirect_to_previous_page: () -> untyped
+end

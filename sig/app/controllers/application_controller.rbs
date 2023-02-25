@@ -1,0 +1,10 @@
+class ApplicationController < ActionController::Base
+
+  private
+
+  def check_admin: () -> void
+
+  def redirect_to_sign_in: () -> void
+
+  def render_404: (?untyped? e) -> void
+end

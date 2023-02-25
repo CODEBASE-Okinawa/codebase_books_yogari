@@ -103,6 +103,8 @@ GEM
     devise-i18n (1.10.3)
       devise (>= 4.8.0)
     diff-lcs (1.5.0)
+    dockerfile-rails (1.2.1)
+      rails
     e2mmap (0.1.0)
     erubi (1.12.0)
     faker (2.21.0)
@@ -302,6 +304,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  dockerfile-rails (>= 1.2)
   faker (= 2.21.0)
   importmap-rails
   jbuilder

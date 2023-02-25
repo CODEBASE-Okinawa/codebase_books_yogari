@@ -1,0 +1,9 @@
+class LendingsController < ApplicationController
+
+  private
+
+  def lending_params: (ActionController::Parameters data) -> { }
+
+  # サインインしているユーザーが借りていない本だったら、貸出一覧ページへリダイレクト
+  def redirect_lendings: () -> void
+end

@@ -1,0 +1,8 @@
+class BooksController < ApplicationController
+
+  private
+
+  def redirect_to_admin_books: () -> void?
+
+  def redirect_to_reservation_lending_show: () -> void
+end

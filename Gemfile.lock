@@ -199,6 +199,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbs (2.8.4)
+    rbs_rails (0.11.0)
+      parser
+      rbs (>= 1)
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -311,6 +315,8 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  rbs (~> 2.8.4)
+  rbs_rails
   ruby-debug-ide
   sassc-rails
   selenium-webdriver

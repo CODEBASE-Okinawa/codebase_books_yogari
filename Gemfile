@@ -69,8 +69,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "rbs", "~>2.8.4", require: false
+  gem "rbs_rails", require: false
   gem "solargraph"
-
   gem "dockerfile-rails", ">= 1.2"
 end
 

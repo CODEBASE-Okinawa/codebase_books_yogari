@@ -1,10 +1,9 @@
 class BooksController < ApplicationController
   before_action :redirect_to_admin_books, only: [:index]
-  before_action :logged_in_user, only: %i[show]
-  helper_method :show_status
+  before_action :redirect_to_sign_in, only: %i[show], unless: :user_signed_in?
 
   def index
-    @books = Book.eager_load(:reservation_active, :lend_active)
+    @books = Book.eager_load(:reservation_active, :lend_active).with_attached_image.order(:id)
   end
 
   def show
@@ -41,12 +40,4 @@ class BooksController < ApplicationController
     redirect_to admin_books_path
   end
 
-  def logged_in_user
-    return unless current_user.nil?
-
-    flash[:failed] = "Please log in."
-    session[:request] = nil
-    session[:request] = request.original_url
-    redirect_to new_user_session_path, status: :see_other
-  end
 end

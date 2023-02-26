@@ -13,11 +13,16 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @reservation = Book.find(params[:book_id]).reservations.build(reservation_param(params))
-    return unless @reservation.save
-
-    flash[:success] = "予約が完了しました"
-    redirect_to reservations_path
+    # return unless @reservation.save
+    if @reservation.save
+      UserMailer.with(user: @user).reservation_at.deliver_later
+      flash[:success] = "予約が完了しました"
+      redirect_to reservations_path
+    end
+    # flash[:success] = "予約が完了しました"
+    # redirect_to reservations_path
   end
 
   def destroy

@@ -17,6 +17,8 @@ services:
     command: bash -c 'rm -f ./tmp/pids/server.pid && bin/rails s -b 0.0.0.0'
     environment:
       - TZ=Asia/Tokyo
+    stdin_open: true
+    tty: true
   postgres:
     image: postgres:15
     restart: unless-stopped

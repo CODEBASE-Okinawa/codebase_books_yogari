@@ -13,6 +13,8 @@ gem "devise"
 
 gem 'devise-i18n'
 
+gem 'delayed_job_active_record'
+
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]

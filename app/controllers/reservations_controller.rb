@@ -13,7 +13,6 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @reservation = Book.find(params[:book_id]).reservations.build(reservation_param(params))
 
     if @reservation.save

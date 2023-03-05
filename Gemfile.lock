@@ -108,6 +108,8 @@ GEM
     devise-i18n (1.10.3)
       devise (>= 4.8.0)
     diff-lcs (1.5.0)
+    dockerfile-rails (1.2.1)
+      rails
     e2mmap (0.1.0)
     erubi (1.12.0)
     faker (2.21.0)
@@ -213,6 +215,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbs (2.8.4)
+    rbs_rails (0.11.0)
+      parser
+      rbs (>= 1)
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -320,6 +326,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-i18n
+  dockerfile-rails (>= 1.2)
   faker (= 2.21.0)
   importmap-rails
   jbuilder
@@ -327,6 +334,8 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  rbs (~> 2.8.4)
+  rbs_rails
   ruby-debug-ide
   sassc-rails
   selenium-webdriver

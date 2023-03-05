@@ -1,5 +1,4 @@
 <h1 class="text-3xl">本一覧</h1>
-
 <div class="grid grid-cols-4 gap-10 mt-10">
   <% @books.each do |book| %>
     <%= link_to book_path(book) do %>
@@ -8,10 +7,19 @@
           <% if book.image.attached? %>
             <%= image_tag book.image, size: 200 %>
           <% else %>
-            <%= image_tag 'no_image.jpeg', size: 200 %>
+            <%= image_tag 'no_image.jpg', size: 200 %>
           <% end %>
           <h5 class="mb-1 text-xl font-medium text-black"><%= book.title %></h5>
-          <%= show_status(book.id, @reservations, @lendings) %>
+
+          <% if book.status(current_user) == "lending" %>
+            <span class="text-sm text-black" style = "background:#0096FF;font-weight:bold;">現在借りています</span>
+          <% elsif book.status(current_user) == "reserved" %>
+            <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
+          <% elsif book.status(current_user) == "lent" %>
+            <span class="text-sm text-black" style = "background:#FF2c2c;font-weight:bold;">貸出中</span>
+          <% else %>
+            <span class="text-sm text-black" style = "background:#98FF98;font-weight:bold;">貸出可能</span>
+          <% end %>
           
         </div>
       </div>

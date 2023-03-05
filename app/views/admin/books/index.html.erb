@@ -35,37 +35,37 @@
           <% if book.image.attached? %>
             <%= image_tag book.image, size: 100 %>
           <% else %>
-            <%= image_tag 'no_image.jpeg', size: 100 %>
+            <%= image_tag 'no_image.jpg', size: 100 %>
           <% end %>
         </td>
         <td class="px-6 py-4">
           <%= book.title %>
         </td>
         <td class="px-6 py-4">
-          <% if book.is_lending? %>
+          <% if book.lending.present? %>
             貸出中
           <% else %>
             貸出可能
           <% end %>
         </td>
         <td class="px-6 py-4">
-          <% if book.is_lending? %>
-            <%= book.lending_start_at.strftime("%Y/%m/%d") %>
+          <% if book.lending.present? %>
+            <%= book.lending.created_at.strftime("%Y/%m/%d") %>
           <% else %>
             -
           <% end %>
         </td>
         <td class="px-6 py-4">
-          <% if book.is_lending? %>
-            <%= book.lending_start_at.strftime("%Y/%m/%d") %>
+          <% if book.lending.present? %>
+            <%= book.lending.created_at.strftime("%Y/%m/%d") %>
           <% else %>
             -
           <% end %>
         </td>
         <td class="px-6 y-4">
-          <% if book.is_lending? %>
-            <p><%= book.lending_user.name %></p>
-            <p><%= book.lending_user.email %></p>
+          <% if book.lending.present? %>
+            <p><%= book.lending.user.name %></p>
+            <p><%= book.lending.user.email %></p>
           <% else %>
             -
           <% end %>

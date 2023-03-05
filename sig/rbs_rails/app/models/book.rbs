@@ -1,0 +1,205 @@
+class Book < ::ApplicationRecord
+  extend _ActiveRecord_Relation_ClassMethods[Book, ActiveRecord_Relation, Integer]
+
+  module GeneratedAttributeMethods
+    def id: () -> Integer
+
+    def id=: (Integer) -> Integer
+
+    def id?: () -> bool
+
+    def id_changed?: () -> bool
+
+    def id_change: () -> [ Integer?, Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> Integer?
+
+    def id_previously_changed?: () -> bool
+
+    def id_previous_change: () -> Array[Integer?]?
+
+    def id_previously_was: () -> Integer?
+
+    def id_before_last_save: () -> Integer?
+
+    def id_change_to_be_saved: () -> Array[Integer?]?
+
+    def id_in_database: () -> Integer?
+
+    def saved_change_to_id: () -> Array[Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def title: () -> String
+
+    def title=: (String) -> String
+
+    def title?: () -> bool
+
+    def title_changed?: () -> bool
+
+    def title_change: () -> [ String?, String? ]
+
+    def title_will_change!: () -> void
+
+    def title_was: () -> String?
+
+    def title_previously_changed?: () -> bool
+
+    def title_previous_change: () -> Array[String?]?
+
+    def title_previously_was: () -> String?
+
+    def title_before_last_save: () -> String?
+
+    def title_change_to_be_saved: () -> Array[String?]?
+
+    def title_in_database: () -> String?
+
+    def saved_change_to_title: () -> Array[String?]?
+
+    def saved_change_to_title?: () -> bool
+
+    def will_save_change_to_title?: () -> bool
+
+    def restore_title!: () -> void
+
+    def clear_title_change: () -> void
+
+    def created_at: () -> ActiveSupport::TimeWithZone
+
+    def created_at=: (ActiveSupport::TimeWithZone) -> ActiveSupport::TimeWithZone
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: () -> bool
+
+    def created_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: () -> bool
+
+    def created_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def updated_at: () -> ActiveSupport::TimeWithZone
+
+    def updated_at=: (ActiveSupport::TimeWithZone) -> ActiveSupport::TimeWithZone
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: () -> bool
+
+    def updated_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: () -> bool
+
+    def updated_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+  end
+  include GeneratedAttributeMethods
+  def lendings: () -> Lending::ActiveRecord_Associations_CollectionProxy
+  def lendings=: (Lending::ActiveRecord_Associations_CollectionProxy | Array[Lending]) -> (Lending::ActiveRecord_Associations_CollectionProxy | Array[Lending])
+  def lending_ids: () -> Array[Integer]
+  def lending_ids=: (Array[Integer]) -> Array[Integer]
+  def reservations: () -> Reservation::ActiveRecord_Associations_CollectionProxy
+  def reservations=: (Reservation::ActiveRecord_Associations_CollectionProxy | Array[Reservation]) -> (Reservation::ActiveRecord_Associations_CollectionProxy | Array[Reservation])
+  def reservation_ids: () -> Array[Integer]
+  def reservation_ids=: (Array[Integer]) -> Array[Integer]
+  def lending: () -> Lending?
+  def lending=: (Lending?) -> Lending?
+  def build_lending: (untyped) -> Lending
+  def create_lending: (untyped) -> Lending
+  def create_lending!: (untyped) -> Lending
+  def reload_lending: () -> Lending?
+  def image_attachment: () -> ActiveStorage::Attachment?
+  def image_attachment=: (ActiveStorage::Attachment?) -> ActiveStorage::Attachment?
+  def build_image_attachment: (untyped) -> ActiveStorage::Attachment
+  def create_image_attachment: (untyped) -> ActiveStorage::Attachment
+  def create_image_attachment!: (untyped) -> ActiveStorage::Attachment
+  def reload_image_attachment: () -> ActiveStorage::Attachment?
+  def image_blob: () -> ActiveStorage::Blob?
+  def image_blob=: (ActiveStorage::Blob?) -> ActiveStorage::Blob?
+  def build_image_blob: (untyped) -> ActiveStorage::Blob
+  def create_image_blob: (untyped) -> ActiveStorage::Blob
+  def create_image_blob!: (untyped) -> ActiveStorage::Blob
+  def reload_image_blob: () -> ActiveStorage::Blob?
+
+  module GeneratedAssociationMethods
+    def image: () -> ActiveStorage::Attached::One
+
+    def image=: (ActionDispatch::Http::UploadedFile) -> ActionDispatch::Http::UploadedFile
+              | (Rack::Test::UploadedFile) -> Rack::Test::UploadedFile
+              | (ActiveStorage::Blob) -> ActiveStorage::Blob
+              | (String) -> String
+              | ({ io: IO, filename: String, content_type: String? }) -> { io: IO, filename: String, content_type: String? }
+              | (nil) -> nil
+  end
+  include GeneratedAssociationMethods
+
+  def self.with_attached_image: () -> ActiveRecord_Relation
+
+  module GeneratedRelationMethods
+    def with_attached_image: () -> ActiveRecord_Relation
+  end
+
+  class ActiveRecord_Relation < ::ActiveRecord::Relation
+    include GeneratedRelationMethods
+    include _ActiveRecord_Relation[Book, Integer]
+    include Enumerable[Book]
+  end
+
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include GeneratedRelationMethods
+    include _ActiveRecord_Relation[Book, Integer]
+  end
+end

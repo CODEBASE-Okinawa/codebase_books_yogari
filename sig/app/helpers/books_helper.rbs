@@ -1,0 +1,3 @@
+module BooksHelper
+  def show_status: (untyped book_id, untyped reservations, untyped lendings) -> untyped
+end

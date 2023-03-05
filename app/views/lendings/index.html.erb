@@ -9,7 +9,7 @@
             <% if lending.book.image.attached? %>
               <%= image_tag lending.book.image, size: 200 %>
             <% else %>
-              <%= image_tag 'no_image.jpeg', size: 200 %>
+              <%= image_tag 'no_image.jpg', size: 200 %>
             <% end %>
             <h5 class="mb-1 text-xl font-medium text-black"><%= lending.book.title %></h5>
             <span class="text-sm text-black" style = background:#0096FF;font-weight: bold;">現在借りています</span>

@@ -53,13 +53,13 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "faker", "2.21.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debase"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "ruby-debug-ide"
-
-  gem "faker", "2.21.0"
 end
 
 group :development do
@@ -71,7 +71,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "rbs", "~>2.8.4", require: false
+  gem "rbs_rails", require: false
   gem "solargraph"
+  gem "dockerfile-rails", ">= 1.2"
   gem 'letter_opener_web'
 end
 

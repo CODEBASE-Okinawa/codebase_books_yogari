@@ -1,0 +1,5 @@
+class Admin::BooksController < ApplicationController
+  private
+
+  def book_params: () -> ActionController::Parameters
+end

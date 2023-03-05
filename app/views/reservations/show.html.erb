@@ -5,12 +5,12 @@
     <% if @reservation.book.image.attached? %>
       <%= image_tag @reservation.book.image, size: 200 %>
     <% else %>
-      <%= image_tag 'no_image.jpeg', size: 200 %>
+      <%= image_tag 'no_image.jpg', size: 200 %>
     <% end %>
   </div>
   <div>
     <h2 class="text-5xl font-bold"><%= @reservation.book.title %></h2>
-    <span class="text-sm text-black" style = background:#FFEE75;font-weight: bold;">予約しています</span>
+    <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
 
     <div class="mt-6">
       <%= button_to "予約キャンセル", reservation_path, method: :delete, class: "w-full items-center px-4 py-2 text-sm font-medium text-center text-white bg-orange-500 border border-gray-300 rounded-lg" %>

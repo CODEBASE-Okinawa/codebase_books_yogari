@@ -13,6 +13,8 @@ gem "devise"
 
 gem 'devise-i18n'
 
+gem 'delayed_job_active_record'
+
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -73,6 +75,7 @@ group :development do
   gem "rbs_rails", require: false
   gem "solargraph"
   gem "dockerfile-rails", ">= 1.2"
+  gem 'letter_opener_web'
 end
 
 group :test do

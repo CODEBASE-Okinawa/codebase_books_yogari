@@ -14,10 +14,14 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Book.find(params[:book_id]).reservations.build(reservation_param(params))
-    return unless @reservation.save
 
-    flash[:success] = "予約が完了しました"
-    redirect_to reservations_path
+    if @reservation.save
+      # reservation_remind_dateメソッドで返された日付にメールを送るように、ジョブにキューイング。
+      MailDeliveryJob.set(wait_until: reservation_remind_date(@reservation.reservation_at)).perform_later(@reservation)
+
+      flash[:success] = "予約が完了しました"
+      redirect_to reservations_path
+    end
   end
 
   def destroy
@@ -41,6 +45,21 @@ class ReservationsController < ApplicationController
     old_reservations = Reservation.where("reservation_at < ?", Date.today)
     if old_reservations.destroy_all && old_reservations.exists?
       redirect_to reservations_path
+    end
+  end
+
+  # 貸出予約のリマインド通知を送る、日付を返す
+  def reservation_remind_date(reservation_at)
+    # リマインダーを送る基準日時（現在時刻から3日後）
+    three_days_before_lending = Date.today.days_since(3)
+
+    # 予約して３日以内に貸出予定なら現在、それ以降なら予約日の３日前の日付をセット
+    if reservation_at.before? three_days_before_lending
+      # 貸出予定が現在から三日以内の場合
+      Time.now
+    else
+      # 貸出予定が現在から３日以上後の場合
+      reservation_at.days_ago(3).to_time
     end
   end
 end

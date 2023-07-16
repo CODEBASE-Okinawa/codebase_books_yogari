@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_16_082041) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_16_100218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_082041) do
   end
 
   create_table "book_requests", force: :cascade do |t|
-    t.integer "isbn", null: false
+    t.string "isbn", null: false
     t.string "title", null: false
     t.string "author", null: false
     t.boolean "status", default: true, null: false

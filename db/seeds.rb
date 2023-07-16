@@ -48,4 +48,12 @@ ActiveRecord::Base.transaction do
       )
     end
   end
+
+  3.times do |n|
+    BookRequest.create!(
+      isbn: rand(1000000000..1111111111),
+      title: Faker::Book.title,
+      author: Faker::Name.name
+    )
+  end
 end

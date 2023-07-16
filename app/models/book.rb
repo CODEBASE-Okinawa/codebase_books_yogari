@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_one_attached :image
 
   validates :title, presence: true
+  validates :isbn, presence: true
 
   delegate :created_at, :return_at, :user, to: :lending
 

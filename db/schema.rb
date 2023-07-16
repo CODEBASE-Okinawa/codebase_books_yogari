@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_130428) do
   end
 
   create_table "request_books", force: :cascade do |t|
-    t.integer "isbn", null: false
+    t.string "isbn", null: false
     t.string "title", null: false
     t.string "author", null: false
     t.boolean "status", default: true, null: false

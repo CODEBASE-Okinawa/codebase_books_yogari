@@ -42,15 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_100218) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "book_requests", force: :cascade do |t|
-    t.string "isbn", null: false
-    t.string "title", null: false
-    t.string "author", null: false
-    t.boolean "status", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
@@ -82,6 +73,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_100218) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_lendings_on_book_id"
     t.index ["user_id"], name: "index_lendings_on_user_id"
+  end
+
+  create_table "request_books", force: :cascade do |t|
+    t.string "isbn", null: false
+    t.string "title", null: false
+    t.string "author", null: false
+    t.boolean "status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|

@@ -1,6 +1,9 @@
 ActiveRecord::Base.transaction do
   10.times do
-    Book.create!(title: Faker::Book.title)
+    Book.create!(
+      title: Faker::Book.title,
+      isbn: 1111111111
+    )
   end
 
   User.create!(

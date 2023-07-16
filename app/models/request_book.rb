@@ -1,0 +1,2 @@
+class RequestBook < ApplicationRecord
+end

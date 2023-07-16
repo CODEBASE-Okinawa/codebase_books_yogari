@@ -4,28 +4,12 @@
             <%#= request.isbn class: 'flex' %>
             <%= request.title %>
             <%= request.author %>
+            <% if request.status == true %>
+              <%= button_to '購入した', toggle_admin_request_path(request), method: :post, class: "shadow-lg bg-yellow-500 shadow-yellow-500/50 text-white rounded px-2 py-1" %>
+            <% else %>
+              <p><span class="shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-2 py-1">購入済み</span></p>
+            <% end %>
         </li>
+
     </ul>
 <% end %>
-
- <script>${script}</script>
-
-<script>
- // html に変換して表示用 DOM に代入
-    var texts = items.map(item => {
-      return `
-        <img class='w100 object-fit-contain bg-gray' src='${item.image}' />
-        `;
-    });
-    $results.innerHTML = texts.join('');
-
-    // 必要なものだけ抜き出してわかりやすいフォーマットに変更する
-  var items = data.items.map(item => {
-    var vi = item.volumeInfo;
-    return {
-      image: vi.imageLinks ? vi.imageLinks.smallThumbnail : '',
-    };
-  });
-  
-  return items;
-  </script>

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       collection { get "search"}
     end
     resources :users, only: [:index]
-    resources :requests, only: [:index]
+    resources :requests, only: [:index] do
+      member { post 'toggle'}
+    end
   end
 
   resources :books

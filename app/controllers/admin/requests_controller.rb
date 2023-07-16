@@ -1,8 +1,14 @@
 class Admin::RequestsController < ApplicationController
   def index
-    @requests = BookRequest.all
+    @requests = RequestBook.all
+  end
 
-    isbn = @requests.map {|request| request.isbn.to_s}
-    # binding.irb
+  def toggle
+    request = RequestBook.find(params[:id])
+
+    request.status = !request.status
+    request.save
+
+    redirect_to admin_requests_path
   end
 end

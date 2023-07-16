@@ -1,4 +1,23 @@
-<%= form_with url: search_request_books_path, local: true, method: :get do |f| %>
-    <%= f.search_field :search, class: "border", value: params[:search] %>
+<%= form_with(url: search_request_books_path, local: true, method: :get) do |f| %>
+    <%= f.search_field :word, class: "border" %>
     <%= f.submit "検索", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
+<% end %>
+
+<% if !@result.nil? %>
+    <div class="grid grid-cols-4 gap-10 mt-10">
+        <% @result["items"].each do |item| %>
+            <%= form_with(url:request_books_path) do |f| %>
+                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white">
+                    <div class="flex flex-col items-center pb-10">
+                        <%= image_tag item["volumeInfo"]["imageLinks"]["smallThumbnail"], size: 200 %>
+                        <%= f.hidden_field :image, :value => item["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+                        <h5 class="mb-1 text-xl font-medium text-black"><%= item["volumeInfo"]["title"] %></h5>
+                        <%= f.hidden_field :title, :value => item["volumeInfo"]["title"] %>
+                        <%= f.hidden_field :author, :value => item["volumeInfo"]["authors"] %>
+                        <%= f.submit "リクエスト", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
 <% end %>

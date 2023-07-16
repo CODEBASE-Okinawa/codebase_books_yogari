@@ -14,6 +14,11 @@
                         <h5 class="mb-1 text-xl font-medium text-black"><%= item["volumeInfo"]["title"] %></h5>
                         <%= f.hidden_field :title, :value => item["volumeInfo"]["title"] %>
                         <%= f.hidden_field :author, :value => item["volumeInfo"]["authors"] %>
+                        <% if item["volumeInfo"]["industryIdentifiers"].first["identifier"].size == 10 %>
+                            <%= f.hidden_field :isbn, :value => item["volumeInfo"]["industryIdentifiers"].first["identifier"] %>
+                        <% else %>
+                            <%= f.hidden_field :isbn, :value => item["volumeInfo"]["industryIdentifiers"].last["identifier"] %>
+                        <% end %>
                         <%= f.submit "リクエスト", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
                     </div>
                 </div>

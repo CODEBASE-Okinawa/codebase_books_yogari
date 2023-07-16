@@ -14,6 +14,14 @@ class RequestBooksController < ApplicationController
 
     def create
         @items = RequestBook.new(book_params)
+        binding.irb
+
+        # if @items.save
+        #     flash[:success] = "リクエストしました"
+        #     redirect_to searches_path
+        # else
+        #     render template: "searches/index"
+        # end
     end
 
     def update
@@ -22,7 +30,7 @@ class RequestBooksController < ApplicationController
     private
 
     def book_params
-        params.permit(:title, :author)
+        params.permit(:title, :author, :image, :isbn)
     end
 
 end

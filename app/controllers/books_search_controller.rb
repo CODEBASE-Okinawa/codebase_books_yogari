@@ -1,2 +1,0 @@
-class BooksSearchController < ApplicationController
-end

@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   resources :books
   resources :reservations, only: [:index, :show, :create, :destroy]
   resources :lendings, only: [:index, :show, :create, :update]
-  resources :book_search, only: [:index, :create, :update]
+  resources :request_books, only: [:create, :update]
+  get "/search", action: "search", controller: "search"
+  get "/search", action: "index", controller: "search"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

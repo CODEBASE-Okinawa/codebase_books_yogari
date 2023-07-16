@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       collection { get "search"}
     end
     resources :users, only: [:index]
+    resources :requests, only: [:index]
   end
 
   resources :books

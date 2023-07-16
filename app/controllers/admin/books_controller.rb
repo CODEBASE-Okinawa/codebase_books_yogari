@@ -32,15 +32,14 @@ class Admin::BooksController < ApplicationController
     end
   end
 
-  def seach_registration
-    @book = Book.new(title: params[:title], isbn: params[:isbn])
-    @book.image.attach(params[:image])
-    if @book.save
-      flash[:success] = "本を登録しました"
-      redirect_to admin_books_path
-    else
-      render 'new', status: :unprocessable_entity
-    end
+  def search_registration
+    Book.create!(
+      title: params[:title],
+      isbn: params[:isbn],
+    )
+    Book.image.attach(params[:image])
+    flash[:success] = "本を登録しました"
+    redirect_to admin_books_path
   end
 
   private

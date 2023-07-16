@@ -42,10 +42,10 @@
 <% if registered_book? %>
   <p>登録済み</p>
 <% else %>
-  <%= form_with(model: @book, url: search_registration_admin_books_path) do |f| %>
+  <%= form_with(model: @book, url: search_registration_admin_books_path, method: :post) do |f| %>
     <%= f.hidden_field :title, value: @result["items"][0]["volumeInfo"]["title"] %>
     <%= f.hidden_field :image, value: @result["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] %>
-    <%= f.hidden_field :isbn, value: @result["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"].to_i %>
+    <%= f.hidden_field :isbn, value: @result["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"] %>
     <%= f.submit "登録する", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
   <% end %>
 <% end %>

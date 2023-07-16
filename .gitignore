@@ -40,3 +40,6 @@ vendor/bundle
 .gem_rbs_collection/
 
 /config/credentials/production.key
+
+# Ignore RubyMine project files
+.idea/

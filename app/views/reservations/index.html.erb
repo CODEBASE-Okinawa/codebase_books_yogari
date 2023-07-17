@@ -7,8 +7,10 @@
           <div class="flex flex-col items-center pb-10">
             <% if reservation.book.image.attached? %>
               <%= image_tag reservation.book.image, size: 200 %>
+            <% elsif reservation.book.image_url %>
+              <%= image_tag reservation.book.image_url, size: 100 %>
             <% else %>
-              <%= image_tag 'no_image.jpg', size: 200 %>
+              <%= image_tag 'no_image.jpg', size: 100 %>
             <% end %>
             <h5 class="mb-1 text-xl font-medium text-black"><%= reservation.book.title %></h5>
             <span class="text-sm text-black" style = background:#FFEE75;font-weight: bold;">予約しています</span>

@@ -15,6 +15,7 @@ class RequestBooksController < ApplicationController
             end
             @items = RequestBook.new
             @requests = RequestBook.all
+            @request_now = RequestBook.where(status: "true")
             @have_books = Book.all
             render template: "searches/index"
         end

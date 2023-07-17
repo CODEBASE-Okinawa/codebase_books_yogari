@@ -1,15 +1,21 @@
-<% @requests.each do |request| %>
-    <ul class="flex border">
-        <li>
-            <%#= request.isbn class: 'flex' %>
-            <%= request.title %>
-            <%= request.author %>
-            <% if request.status == true %>
-              <%= button_to '購入した', toggle_admin_request_path(request), method: :post, class: "shadow-lg bg-yellow-500 shadow-yellow-500/50 text-white rounded px-2 py-1" %>
-            <% else %>
-              <p><span class="shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-2 py-1">購入済み</span></p>
-            <% end %>
-        </li>
-
-    </ul>
-<% end %>
+<div class="grid grid-cols-4 gap-10 mt-10">
+  <% @requests.each do |request| %>
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white">
+        <div class="flex flex-col items-center pb-10">
+          <% if request.image.nil? %>
+            <%= image_tag 'no_image.jpg', size: 200 %>
+          <% else %>
+            <%= image_tag request.image, size: 200 %>
+          <% end%>
+          <h5 class="mb-1 text-xl font-medium text-black"><%= request.title %></h5>
+          <h6 class="mb-1 text-xl font-medium text-black"><%= request.author %></h6>
+          <% if request.status == true %>
+            <%= button_to '購入した', toggle_admin_request_path(request), method: :post, class: "shadow-lg bg-yellow-500 shadow-yellow-500/50 text-white rounded px-2 py-1" %>
+          <% else %>
+            <span class="shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-2 py-1">購入済み</span>
+          <% end %>
+          <span class="mb-1 text-xl font-medium text-black">isbn: <%= request.isbn %></span>
+      </div>
+    </div>
+  <% end %>
+</div>

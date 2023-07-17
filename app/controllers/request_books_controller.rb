@@ -17,7 +17,7 @@ class RequestBooksController < ApplicationController
             @items = RequestBook.new
             @requests = RequestBook.all
             @have_books = Book.eager_load(:lending)
-            # binding.irb
+            @request_now = RequestBook.where(status: "true")
             render template: "searches/index"
         end
     end

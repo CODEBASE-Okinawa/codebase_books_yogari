@@ -1,2 +1,0 @@
-class BookRequest < ApplicationRecord
-end

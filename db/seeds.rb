@@ -2,7 +2,7 @@ ActiveRecord::Base.transaction do
   10.times do
     Book.create!(
       title: Faker::Book.title,
-      isbn: '1111111111'
+      isbn: '479806775X'
     )
   end
 

@@ -1,4 +1,5 @@
 class RequestBooksController < ApplicationController
+    # include Book
     def search
         word = URI.encode_www_form_component(params[:word])
         @result = GoogleBooksApi.search_by_word(word)
@@ -15,7 +16,8 @@ class RequestBooksController < ApplicationController
             end
             @items = RequestBook.new
             @requests = RequestBook.all
-            @have_books = Book.all
+            @have_books = Book.eager_load(:lending)
+            # binding.irb
             render template: "searches/index"
         end
     end

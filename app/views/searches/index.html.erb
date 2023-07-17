@@ -1,3 +1,4 @@
+
 <%= form_with(url: search_request_books_path, local: true, method: :get) do |f| %>
     <%= f.search_field :word, class: "border" %>
     <%= f.submit "検索", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
@@ -27,12 +28,24 @@
                         <% else %>
                             <%= f.hidden_field :isbn, :value => item["volumeInfo"]["industryIdentifiers"].last["identifier"] %>
                         <% end %>
-                        <% if !@have_books.exists?(title: item["volumeInfo"]["title"]) %>
-                            <% if !@requests.exists?(title: item["volumeInfo"]["title"]) %>
-                                <%= f.submit "リクエスト", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
-                            <% elsif @request_now.exists?(title: item["volumeInfo"]["title"]) %>
-                                <span class="text-sm text-black" style = "background:#dcdcdc;font-weight:bold;">リクエスト中</span>
+
+                        <% if @have_books.exists?(title: item["volumeInfo"]["title"]) %>
+                          <% book = @have_books.find_by(title: item["volumeInfo"]["title"]) %>
+                          <%= link_to book_path(book) do %>
+                            <% if book.status(current_user) == "lending" %>
+                              <span class="text-sm text-black" style = "background:#0096FF;font-weight:bold;">現在借りています</span>
+                            <% elsif book.status(current_user) == "reserved" %>
+                              <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
+                            <% elsif book.status(current_user) == "lent" %>
+                              <span class="text-sm text-black" style = "background:#FF2c2c;font-weight:bold;">貸出中</span>
+                            <% else %>
+                              <span class="text-sm text-black" style = "background:#98FF98;font-weight:bold;">貸出可能</span>
                             <% end %>
+                          <% end %>
+                        <% elsif !@requests.exists?(title: item["volumeInfo"]["title"]) %>
+                          <%= f.submit "リクエスト", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
+                        <% else %>
+                          <span class="text-sm text-black" style = "background:#dcdcdc;font-weight:bold;">リクエスト中</span>
                         <% end %>
                     </div>
                 </div>

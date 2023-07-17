@@ -33,11 +33,11 @@ class Admin::BooksController < ApplicationController
   end
 
   def search_registration
-    Book.create!(
+    book = Book.create!(
       title: params[:title],
       isbn: params[:isbn],
     )
-    Book.image.attach(params[:image])
+    book.image.attach(params[:image])
     flash[:success] = "本を登録しました"
     redirect_to admin_books_path
   end

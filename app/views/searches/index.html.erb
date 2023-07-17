@@ -30,15 +30,17 @@
                         <% end %>
 
                         <% if @have_books.exists?(title: item["volumeInfo"]["title"]) %>
-                          <% book = @have_books.find_by(title: item["volumeInfo"]["title"]).status(current_user) %>
-                          <% if book == "lending" %>
-                            <span class="text-sm text-black" style = "background:#0096FF;font-weight:bold;">現在借りています</span>
-                          <% elsif book == "reserved" %>
-                            <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
-                          <% elsif book == "lent" %>
-                            <span class="text-sm text-black" style = "background:#FF2c2c;font-weight:bold;">貸出中</span>
-                          <% else %>
-                            <span class="text-sm text-black" style = "background:#98FF98;font-weight:bold;">貸出可能</span>
+                          <% book = @have_books.find_by(title: item["volumeInfo"]["title"]) %>
+                          <%= link_to book_path(book) do %>
+                            <% if book.status(current_user) == "lending" %>
+                              <span class="text-sm text-black" style = "background:#0096FF;font-weight:bold;">現在借りています</span>
+                            <% elsif book.status(current_user) == "reserved" %>
+                              <span class="text-sm text-black" style = "background:#FFEE75;font-weight:bold;">予約しています</span>
+                            <% elsif book.status(current_user) == "lent" %>
+                              <span class="text-sm text-black" style = "background:#FF2c2c;font-weight:bold;">貸出中</span>
+                            <% else %>
+                              <% link_to %><span class="text-sm text-black" style = "background:#98FF98;font-weight:bold;">貸出可能</span>
+                            <% end %>
                           <% end %>
                         <% else %>
                           <% if !@requests.exists?(title: item["volumeInfo"]["title"]) %>

@@ -1,6 +1,6 @@
 class Admin::RequestsController < ApplicationController
   def index
-    @requests = RequestBook.order(:status)
+    @requests = RequestBook.where(status: "true")
   end
 
   def toggle

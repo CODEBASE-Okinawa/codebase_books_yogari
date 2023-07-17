@@ -1,7 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :check_admin
   helper_method :registered_book?
-  helper_method :get_book_image
 
   def index
     @books = Book.eager_load(:lending).with_attached_image.order(:id)
@@ -40,11 +39,6 @@ class Admin::BooksController < ApplicationController
     )
     flash[:success] = "本を登録しました"
     redirect_to admin_books_path
-  end
-
-  def get_book_image(isbn)
-    result = GoogleBooksApi.search_by_isbn(isbn)
-    result["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
   end
 
   private

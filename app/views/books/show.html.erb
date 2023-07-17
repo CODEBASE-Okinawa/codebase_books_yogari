@@ -4,6 +4,8 @@
   <div>
     <% if @book.image.attached? %>
       <%= image_tag @book.image, size: 200 %>
+    <% elsif @book.isbn %>
+      <%= image_tag get_book_image(@book.isbn) %>
     <% else %>
       <%= image_tag 'no_image.jpg', size: 200 %>
     <% end %>

@@ -2,7 +2,7 @@ ActiveRecord::Base.transaction do
   10.times do
     Book.create!(
       title: Faker::Book.title,
-      isbn: '1111111111'
+      isbn: SecureRandom.random_number(10**10).to_s.rjust(10, '0')
     )
   end
 

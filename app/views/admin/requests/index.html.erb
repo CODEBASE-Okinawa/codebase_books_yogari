@@ -9,11 +9,7 @@
           <% end%>
           <h5 class="mb-1 text-xl font-medium text-black"><%= request.title %></h5>
           <h6 class="mb-1 text-xl font-medium text-black"><%= request.author %></h6>
-          <% if request.status == true %>
-            <%= button_to '購入した', toggle_admin_request_path(request), method: :post, class: "shadow-lg bg-yellow-500 shadow-yellow-500/50 text-white rounded px-2 py-1" %>
-          <% else %>
-            <span class="shadow-lg bg-sky-500 shadow-sky-500/50 text-white rounded px-2 py-1">購入済み</span>
-          <% end %>
+          <%= button_to '購入した', toggle_admin_request_path(request), method: :post, class: "shadow-lg bg-yellow-500 shadow-yellow-500/50 text-white rounded px-2 py-1" %>
           <span class="mb-1 text-xl font-medium text-black">isbn: <%= request.isbn %></span>
       </div>
     </div>

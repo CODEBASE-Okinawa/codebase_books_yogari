@@ -13,7 +13,7 @@ module GoogleBooksApi
     # end
 
     def search_by_word(word)
-      url = "https://www.googleapis.com/books/v1/volumes?q=title:#{word}&maxResults=3"
+      url = "https://www.googleapis.com/books/v1/volumes?q=title:#{word}&maxResults=10"
       response = Faraday.get(url)
       @result = JSON.parse(response.body)
     end

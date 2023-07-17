@@ -19,15 +19,37 @@
 <% end %>
 
 <%= form_with(url: search_admin_books_path, method: :get) do |f| %>
+  <div>
+    <h3>本を検索する</h3>
+  </div>
   <div class="flex">
     <div>
-      <p>
-        <%= f.label :isbn, "ISBN-No.：" %>
-        <%= f.number_field :isbn, class: "border" %>
-        <%= f.submit "検索", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
-      </p>
+      <%= f.label :isbn, "ISBN-No.：" %>
+      <%= f.number_field :isbn, class: "border", required: true %>
+    </div>
+    <div>
+      <%= f.submit "検索", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
     </div>
   </div>
 <% end %>
 
-<%= @result %>
+<h3>検索結果</h3>
+<% if @result %>
+  <% if @result["totalItems"] == 0 %>
+    <p>検索結果がありません</p>
+  <% else %>
+    <p><%= @result["items"][0]["volumeInfo"]["title"] %></p>
+    <p><img src="<%= @result["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] %>" alt=""></p>
+    <p><%= @result["items"][0]["volumeInfo"]["authors"][0] %></p>
+    <% if registered_book? %>
+      <p>登録済み</p>
+    <% else %>
+      <%= form_with(model: @book, url: search_registration_admin_books_path, method: :post, multipart: true) do |f| %>
+        <%= f.hidden_field :title, value: @result["items"][0]["volumeInfo"]["title"] %>
+        <%= f.hidden_field :image, value: @result["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] %>
+        <%= f.hidden_field :isbn, value: @result["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"] %>
+        <%= f.submit "登録する", class: "w-full mt-6 text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5" %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,5 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :check_admin
+  helper_method :registered_book?
 
   def index
     @books = Book.eager_load(:lending).with_attached_image.order(:id)
@@ -31,9 +32,23 @@ class Admin::BooksController < ApplicationController
     end
   end
 
+  def search_registration
+    book = Book.create!(
+      title: params[:title],
+      isbn: params[:isbn],
+    )
+    # book.image.attach(params[:image]) 後で画像を登録できるようにする
+    flash[:success] = "本を登録しました"
+    redirect_to admin_books_path
+  end
+
   private
 
   def book_params
     params.require(:book).permit(:title, :image)
+  end
+
+  def registered_book?
+    Book.exists?(isbn: @result["items"][0]["volumeInfo"]["industryIdentifiers"][1]["identifier"].to_i)
   end
 end

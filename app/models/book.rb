@@ -8,7 +8,7 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
 
-  delegate :created_at, :return_at, :user, to: :lending
+  delegate :created_at, :return_at, :user, to: :lending, allow_nil: true
 
   def status(user)
     user_id = user&.id

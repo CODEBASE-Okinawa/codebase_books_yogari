@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  # mount_devise_token_auth_for 'User', at: 'auth'
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions"
   }
+  namespace :api, fomat: :json do
+    scope :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+        registrations: "devise_token_auth/registrations",
+        sessions: "devise_token_auth/sessions"
+      }
+    end
+  end
   root "top#index"
   namespace :admin do
     resources :books, only: [:index, :new, :create] do

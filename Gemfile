@@ -10,8 +10,9 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 gem "sprockets-rails"
 
 gem "devise"
-
+gem 'devise_token_auth'
 gem 'devise-i18n'
+gem 'omniauth', '>= 1.0.0'
 
 gem 'delayed_job_active_record'
 

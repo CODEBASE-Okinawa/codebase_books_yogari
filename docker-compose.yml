@@ -16,7 +16,7 @@ services:
       - postgres
     command: bash -c 'rm -f ./tmp/pids/server.pid && bin/rails s -b 0.0.0.0'
     environment:
-      FRONTEND_ORIGIN: http://localhost:3001
+      FRONTEND_ORIGIN: http://localhost:8000
     stdin_open: true
     tty: true
   postgres:
@@ -34,6 +34,15 @@ services:
       options:
         max-size: "10k"
         max-file: "5"
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/app:/usr/src/app
+    command: 'yarn dev'
+    ports:
+      - '8000:3000'
 
 volumes:
   postgres-volume:
